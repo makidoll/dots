@@ -200,7 +200,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 ## 4. Extras
 
--   when using grub2win
+-   when using grub2win (please dont, just main arch)
 
     ```
     insmod all_video
