@@ -1,0 +1,40 @@
+import:
+    - ~/.config/alacritty/dracula.yml
+
+env:
+    TERM: alacritty
+
+window:
+    dimensions:
+        columns: 80
+        lines: 24
+    padding:
+        x: 8
+        y: 8
+    dynamic_title: true
+
+scrolling:
+    history: 10000
+
+font:
+    size: 11
+    normal:
+        family: Roboto Mono
+        style: Regular
+    bold:
+        family: Roboto Mono
+        style: Bold
+    italic:
+        family: Roboto Mono
+        style: Italic
+    bold_italic:
+        family: Roboto Mono
+        style: Bold Italic
+
+selection:
+    save_to_clipboard: true
+
+cursor:
+    style:
+        shape: Beam
+        blinking: "On"

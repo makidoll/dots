@@ -1,0 +1,140 @@
+artwork.cache.period 48
+artwork.enable_albumartorg 0
+artwork.enable_embedded 1
+artwork.enable_lastfm 0
+artwork.enable_localfolder 1
+artwork.enable_musicbrainz 0
+artwork.enable_wos 0
+artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*folder*.png
+artwork.missing_artwork 0
+artwork.nocover_path 
+artwork.scale_towards_longer 1
+cli_add_playlist_name Default
+close_send_to_tray 1
+deadbeef_version 1.8.8
+filebrowser.autofilter 1
+filebrowser.bgcolor 
+filebrowser.bgcolor_selected 
+filebrowser.coverart_files cover.png;cover.jpg;folder.png;folder.jpg;front.png;front.jpg
+filebrowser.coverart_scale 1
+filebrowser.coverart_size 24
+filebrowser.defaultpath /home/maki/Files/Music
+filebrowser.enabled 1
+filebrowser.expanded_rows file:///home/maki/Files/Music/Bandcamp
+filebrowser.extra_bookmarks $HOME/.config/deadbeef/bookmarks
+filebrowser.fgcolor 
+filebrowser.fgcolor_selected 
+filebrowser.filter 
+filebrowser.filter_enabled 0
+filebrowser.font_size 0
+filebrowser.fullsearch_wait 5
+filebrowser.hidden 0
+filebrowser.hide_navigation 1
+filebrowser.hide_search 1
+filebrowser.hide_toolbar 1
+filebrowser.icon_size 24
+filebrowser.save_treeview 1
+filebrowser.search_delay 1000
+filebrowser.show_coverart 1
+filebrowser.showbookmarks 0
+filebrowser.showhidden 0
+filebrowser.showicons 1
+filebrowser.sidebar_width 200
+filebrowser.sort_treeview 1
+filebrowser.treelines 0
+filechooser.lastdir file:///home/maki/Files/Music
+gtkui.color.bar_background 65535 65535 65535
+gtkui.color.listview_cursor 30583 30326 31611
+gtkui.color.listview_even_row 15677 14392 17990
+gtkui.color.listview_odd_row 9252 7967 12593
+gtkui.color.tabstrip_base 63222 62965 62708
+gtkui.color.tabstrip_light 65535 65535 65535
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"182","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"289","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.embolden_current_track 0
+gtkui.hide_tray_icon 0
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } hsplitter locked=0 ratio=0.297824 pos=0 size2=0 {vsplitter locked=0 ratio=0.847283 pos=0 size2=0 {filebrowser {} musical_spectrum {} } hsplitter locked=0 ratio=0.697452 pos=0 size2=0 {vsplitter locked=0 ratio=0.847569 pos=0 size2=0 {playlist hideheaders=0 width=735 {} spectrogram {} } vsplitter locked=0 ratio=0.649146 pos=0 size2=0 {selproperties {} coverart {} } } } } 
+gtkui.override_bar_colors 0
+gtkui.override_listview_colors 0
+gtkui.override_tabstrip_colors 0
+gtkui.pltbrowser.show_headers 1
+gtkui.start_hidden 0
+gtkui.statusbar.visible 1
+gtkui.statusbar_seltime 0
+gtkui.tabscroll 0
+gtkui.titlebar_playing_tf %artist% - %title% - DeaDBeeF-%_deadbeef_version%
+gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
+gui_plugin GTK3
+hotkey.key01 "Ctrl f" 0 0 find
+hotkey.key02 "Ctrl o" 0 0 open_files
+hotkey.key03 "Ctrl q" 0 0 quit
+hotkey.key04 "Ctrl n" 0 0 new_playlist
+hotkey.key05 "Ctrl a" 0 0 select_all
+hotkey.key06 "Escape" 0 0 deselect_all
+hotkey.key07 "Ctrl m" 0 0 toggle_stop_after_current
+hotkey.key08 "Ctrl j" 0 0 jump_to_current_track
+hotkey.key09 "F1" 0 0 help
+hotkey.key10 "Delete" 1 0 remove_from_playlist
+hotkey.key11 "Ctrl w" 0 0 remove_current_playlist
+hotkey.key13 "Alt Return" 1 0 track_properties
+hotkey.key14 "Return" 0 0 play
+hotkey.key15 "Ctrl p" 0 0 toggle_pause
+hotkey.key16 "Alt 1" 0 0 playlist1
+hotkey.key17 "Alt 2" 0 0 playlist2
+hotkey.key18 "Alt 3" 0 0 playlist3
+hotkey.key19 "Alt 4" 0 0 playlist4
+hotkey.key20 "Alt 5" 0 0 playlist5
+hotkey.key21 "Alt 6" 0 0 playlist6
+hotkey.key22 "Alt 7" 0 0 playlist7
+hotkey.key23 "Alt 8" 0 0 playlist8
+hotkey.key24 "Alt 9" 0 0 playlist9
+hotkey.key25 "Alt 0" 0 0 playlist10
+hotkey.key26 z 0 0 prev
+hotkey.key27 x 0 0 play
+hotkey.key28 c 0 0 toggle_pause
+hotkey.key29 v 0 0 stop
+hotkey.key30 b 0 0 next
+hotkey.key31 n 0 0 playback_random
+hotkey.key32 "Ctrl k" 0 0 toggle_stop_after_album
+hotkeys_created 1
+logwindow.geometry.h 200
+logwindow.geometry.w 400
+logwindow.geometry.x 40
+logwindow.geometry.y 40
+mainwin.geometry.h 866
+mainwin.geometry.maximized 0
+mainwin.geometry.w 1509
+mainwin.geometry.x 276
+mainwin.geometry.y 74
+network.proxy.port 8080
+output_plugin alsa
+playback.loop 1
+playback.volume 0.0000000
+playlist.current 0
+playlist.cursor.0 1
+playlist.cursor.1 0
+playlist.scroll.0 -1
+playlist.scroll.1 0
+playlist.scroll.cursorfollowplayback 1
+playlist.tab.00000 Music
+prefwin.geometry.h 608
+prefwin.geometry.w 849
+prefwin.geometry.x 588
+prefwin.geometry.y 164
+resume.paused 0
+resume.playlist 0
+resume.position 0.0000000
+resume.track 1
+spectrogram.color.gradient_00 65535 0 0
+spectrogram.color.gradient_01 65535 32896 0
+spectrogram.color.gradient_02 65535 65535 0
+spectrogram.color.gradient_03 32896 65535 30840
+spectrogram.color.gradient_04 0 38036 41120
+spectrogram.color.gradient_05 0 8224 25700
+spectrogram.color.gradient_06 0 0 0
+spectrogram.db_range 70
+spectrogram.log_scale 1
+spectrogram.num_colors 7
+spectrogram.refresh_interval 25
+streamer.samplerate 44100
+streamer.samplerate_mult_44 44100
+streamer.samplerate_mult_48 48000
