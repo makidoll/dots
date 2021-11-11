@@ -60,6 +60,9 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   UEFI/GPT
 
+    -   install amd-ucode or intel-ucode<br>
+        `pacman -S amd-ucode`
+
     -   install systemd bootloader<br>
         `bootctl install`
     -   create new boot entry<br>
@@ -68,6 +71,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
         ```
         title		Arch Linux
         linux		/vmlinuz-linux
+        initrd		/amd-ucode.img
         initrd		/initramfs-linux.img
         options		root=/dev/nvme0n1p2 rw
         ```
@@ -200,7 +204,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 ## 4. Extras
 
--   when using grub2win (please dont, just main arch)
+-   when using grub2win
 
     ```
     insmod all_video
@@ -232,9 +236,8 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   setup alacritty
 
     -   [`.config/alacritty/alacritty.yml`](https://raw.githubusercontent.com/makitsune/dots/main/.config/alacritty/alacritty.yml)
-    -   [`.config/alacritty/dracula.yml`](https://raw.githubusercontent.com/makitsune/dots/main/.config/alacritty/dracula.yml)
 
 -   setup deadbeef
 
-    -   `yay -S deadbeef deadbeef-gnome-mmkeys-git deadbeef-plugin-fb-gtk3-git deadbeef-plugin-musical-spectrum-gtk3-git deadbeef-plugin-spectrogram-gtk3-git`
+    -   `yay -S deadbeef deadbeef-gnome-mmkeys-git deadbeef-plugin-fb-gtk3-git deadbeef-plugin-musical-spectrum-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-pipewire-gtk3-git`
     -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
