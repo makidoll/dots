@@ -241,3 +241,9 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
     -   `yay -S deadbeef deadbeef-gnome-mmkeys-git deadbeef-plugin-fb-gtk3-git deadbeef-plugin-musical-spectrum-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-pipewire-gtk3-git`
     -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
+
+-   setup smb for sonos music library
+
+    -   `sudo pacman -S samba`
+    -   [`/etc/samba/smb.conf`](https://raw.githubusercontent.com/makitsune/dots/main/etc/samba/smb.conf)
+    -   `sudo systemctl enable smb && sudo systemctl start smb`
