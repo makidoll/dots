@@ -239,7 +239,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   setup deadbeef
 
-    -   `yay -S deadbeef deadbeef-gnome-mmkeys-git deadbeef-plugin-fb-gtk3-git deadbeef-plugin-musical-spectrum-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-pipewire-gtk3-git`
+    -   `yay -S deadbeef deadbeef-gnome-mmkeys-git deadbeef-plugin-fb-gtk3-git deadbeef-plugin-musical-spectrum-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-pipewire-gtk3-git deadbeef-plugin-discord-git`
     -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
 
 -   setup smb for sonos music library
