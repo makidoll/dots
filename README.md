@@ -79,7 +79,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 <ul>
 <li>
 <details>
-<summary>UEFI/GPT</summary>
+<summary>UEFI/GPT (w/o Windows)</summary>
 
 -   install amd-ucode or intel-ucode<br>
     `pacman -S amd-ucode`
@@ -104,6 +104,38 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     ```
     timeout 3
     default arch
+    ```
+</details>
+</li>
+</ul>
+
+<ul>
+<li>
+<details>
+<summary>UEFI/GPT (with Windows)</summary>
+
+-   exit out of chroot
+    `exit`
+
+-   make /mnt/efi and mount the Windows EFI partition<br>
+    ```bash
+    mkdir /mnt/efi
+    mount /dev/sda1 /mnt/efi
+    ```
+    
+-   chroot into the new system<br>
+    `arch-chroot /mnt`
+
+-   install a couple packages<br>
+    `pacman -S grub efibootmgr os-prober`
+
+-   uncomment GRUB_DISABLE_OS_PROBER=false<br>
+    `nano /etc/default/grub`
+
+-   install grub to the EFI partition<br>
+    ```bash
+    grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+    grub-mkconfig -o /boot/grub/grub.cfg
     ```
 </details>
 </li>
