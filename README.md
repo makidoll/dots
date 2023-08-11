@@ -4,37 +4,49 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 ## 1. Core installation
 
--   BIOS/MBR
+<ul>
+<li>
+<details>
+<summary>BIOS/MBR</summary>
+    
+-   create a single partition and make it bootable<br>
+    `cfdisk /dev/nvme0n1`
 
-    -   create a single partition and make it bootable<br>
-        `cfdisk /dev/nvme0n1`
+-   build ext4 filesystem to it<br>
+    `mkfs.ext4 /dev/nvme0n1p1`
 
-    -   build ext4 filesystem to it<br>
-        `mkfs.ext4 /dev/nvme0n1p1`
+-   mount the new partition<br>
+    `mount /dev/nvme0n1p1 /mnt`
+</details>
+</li>
+</ul>
 
-    -   mount the new partition<br>
-        `mount /dev/nvme0n1p1 /mnt`
+<ul>
+<li>
+<details>
+<summary>UEFI/GPT (w or w/o Windows installed)</summary>
+    
+-   create a 512 MB parition, type: EFI system (don't if you already have one)<br>
+    create second parition for the rest<br>
+    `cfdisk /dev/nvme0n1`
 
--   UEFI/GPT
+-   build FAT32 on 512 MB one (only if you made one)<br> 
+    `mkfs.fat -F32 /dev/nvme0n1p1`
 
-    -   create a 512 MB parition, type: EFI system
-        create second parition for the rest<br>
-        `cfdisk /dev/nvme0n1`
+-   build ext4 on the other<br>
+    `mkfs.ext4 /dev/nvme0n1p2`
 
-    -   build FAT32 on 512 MB one<br>
-        `mkfs.fat -F32 /dev/nvme0n1p1`
+-   mount the large ext4 partition<br>
+    `mount /dev/nvme0n1p2 /mnt`
 
-    -   build ext4 on the other<br>
-        `mkfs.ext4 /dev/nvme0n1p2`
+-   create directory boot on it<br>
+    `mkdir /mnt/boot`
 
-    -   mount the large ext4 partition<br>
-        `mount /dev/nvme0n1p2 /mnt`
-
-    -   create directory boot on it<br>
-        `mkdir /mnt/boot`
-
-    -   mount 512 MB one into boot<br>
-        `mount /dev/nvme0n1p1 /mnt/boot`
+-   mount 512 MB one into boot (only if you're installing Linux first)<br>
+    `mount /dev/nvme0n1p1 /mnt/boot`
+</details>
+</li>
+</ul>
 
 -   (optional) set geographicly close mirror top<br>
     `nano /etc/pacman.d/mirrorlist`
@@ -51,38 +63,51 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   set password for root<br>
     `passwd`
 
--   BIOS/MBR
+<ul>
+<li>
+<details>
+<summary>BIOS/MBR</summary>
+    
+-   install and configure grub<br>
+    `pacman -S grub os-prober`<br>
+    `grub-install --recheck /dev/nvme0n1`<br>
+    `grub-mkconfig -o /boot/grub/grub.cfg`
+</details>
+</li>
+</ul>
 
-    -   install and configure grub<br>
-        `pacman -S grub os-prober`<br>
-        `grub-install --recheck /dev/nvme0n1`<br>
-        `grub-mkconfig -o /boot/grub/grub.cfg`
+<ul>
+<li>
+<details>
+<summary>UEFI/GPT</summary>
 
--   UEFI/GPT
+-   install amd-ucode or intel-ucode<br>
+    `pacman -S amd-ucode`
 
-    -   install amd-ucode or intel-ucode<br>
-        `pacman -S amd-ucode`
+-   install systemd bootloader<br>
+    `bootctl install`
+    
+-   create new boot entry<br>
+    `nano /boot/loader/entries/arch.conf`
 
-    -   install systemd bootloader<br>
-        `bootctl install`
-    -   create new boot entry<br>
-        `nano /boot/loader/entries/arch.conf`
+    ```
+    title		Arch Linux
+    linux		/vmlinuz-linux
+    initrd		/amd-ucode.img
+    initrd		/initramfs-linux.img
+    options		root=/dev/nvme0n1p2 rw
+    ```
 
-        ```
-        title		Arch Linux
-        linux		/vmlinuz-linux
-        initrd		/amd-ucode.img
-        initrd		/initramfs-linux.img
-        options		root=/dev/nvme0n1p2 rw
-        ```
+-   set the default entry<br>
+    `nano /boot/loader/loader.conf`
 
-    -   set the default entry<br>
-        `nano /boot/loader/loader.conf`
-
-        ```
-        timeout 3
-        default arch
-        ```
+    ```
+    timeout 3
+    default arch
+    ```
+</details>
+</li>
+</ul>
 
 -   remove the bootable media, restart PC<br>
     `exit`<br>
