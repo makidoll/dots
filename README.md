@@ -114,7 +114,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 <details>
 <summary>UEFI/GPT (with Windows)</summary>
 
--   exit out of chroot
+-   exit out of chroot<br>
     `exit`
 
 -   make /mnt/efi and mount the Windows EFI partition<br>
