@@ -320,3 +320,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     find Files/* -type d -exec chmod 755 {} +
     ind Files/* -type f -exec chmod 644 {} +
     ```
+
+-   guide to install affinity suite
+
+    https://codeberg.org/wanesty/affinity-wine-docs/src/branch/guide-wine8.14
