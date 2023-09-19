@@ -293,8 +293,11 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     -   assign **Switch Windows** keyboard shortcut to alt+tab
 
     -   extensions
+
         -   [Vertical overview](https://extensions.gnome.org/extension/4144/vertical-overview/)
         -   [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
+
+    -   using tweaks, disable **Middle Click Paste** in **Keyboard & Mouse**
 
 -   setup alacritty
 
