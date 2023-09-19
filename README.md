@@ -17,6 +17,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   mount the new partition<br>
     `mount /dev/nvme0n1p1 /mnt`
+
 </details>
 </li>
 </ul>
@@ -30,7 +31,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     create second parition for the rest<br>
     `cfdisk /dev/nvme0n1`
 
--   build FAT32 on 512 MB one (only if you made one)<br> 
+-   build FAT32 on 512 MB one (only if you made one)<br>
     `mkfs.fat -F32 /dev/nvme0n1p1`
 
 -   build ext4 on the other<br>
@@ -44,6 +45,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   mount 512 MB one into boot (only if you're installing Linux first)<br>
     `mount /dev/nvme0n1p1 /mnt/boot`
+
 </details>
 </li>
 </ul>
@@ -72,6 +74,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     `pacman -S grub os-prober`<br>
     `grub-install --recheck /dev/nvme0n1`<br>
     `grub-mkconfig -o /boot/grub/grub.cfg`
+
 </details>
 </li>
 </ul>
@@ -86,7 +89,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   install systemd bootloader<br>
     `bootctl install`
-    
+
 -   create new boot entry<br>
     `nano /boot/loader/entries/arch.conf`
 
@@ -105,6 +108,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     timeout 3
     default arch
     ```
+
 </details>
 </li>
 </ul>
@@ -118,11 +122,12 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     `exit`
 
 -   make /mnt/efi and mount the Windows EFI partition<br>
+
     ```bash
     mkdir /mnt/efi
     mount /dev/sda1 /mnt/efi
     ```
-    
+
 -   chroot into the new system<br>
     `arch-chroot /mnt`
 
@@ -137,6 +142,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
     grub-mkconfig -o /boot/grub/grub.cfg
     ```
+
 </details>
 </li>
 </ul>
@@ -247,7 +253,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     |        | `nvidia-304xx`   |
 
 -   install Xorg packages<br>
-    `pacman -S xorg-server xorg-xinit xterm`
+    `pacman -S xorg-server xorg-xinit`
 
 -   install desktop environment<br>
     `pacman -S gnome gnome-extra`
@@ -261,7 +267,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 ## 4. Extras
 
--   when using grub2win
+-   when using grub2win (try to avoid it i guess)
 
     ```
     insmod all_video
@@ -292,7 +298,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   setup alacritty
 
-    -   [`.config/alacritty/alacritty.yml`](https://raw.githubusercontent.com/makitsune/dots/main/.config/alacritty/alacritty.yml)
+    -   [`.config/alacritty/alacritty.yml`](https://raw.githubusercontent.com/makitsune/dots/main/.config/alacritty/alacritty.yml) (haven't really touched this in a while)
 
 -   setup deadbeef
 
@@ -304,3 +310,10 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     -   `sudo pacman -S samba`
     -   [`/etc/samba/smb.conf`](https://raw.githubusercontent.com/makitsune/dots/main/etc/samba/smb.conf)
     -   `sudo systemctl enable smb && sudo systemctl start smb`
+
+-   fix file permissions when copying from ntfs
+
+    ```bash
+    find Files/* -type d -exec chmod 755 {} +
+    ind Files/* -type f -exec chmod 644 {} +
+    ```
