@@ -267,15 +267,6 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 ## 4. Extras
 
--   when using grub2win (try to avoid it i guess)
-
-    ```
-    insmod all_video
-    set root='(hd0,4)'
-    linux /boot/vmlinuz-linux root=/dev/nvme0n1p4 rw
-    initrd /boot/initramfs-linux.img
-    ```
-
 -   refresh your mirrorlist
 
     `sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist`
@@ -299,6 +290,28 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
     -   using tweaks, disable **Middle Click Paste** in **Keyboard & Mouse**
 
+-   fix file permissions when copying from ntfs
+
+    ```bash
+    find Files/* -type d -exec chmod 755 {} +
+    find Files/* -type f -exec chmod 644 {} +
+    ```
+
+-   guide to install affinity suite
+
+    https://codeberg.org/wanesty/affinity-wine-docs/src/branch/guide-wine8.14
+
+## 4.5. Extras (not really using)
+
+-   when using grub2win (try to avoid it i guess)
+
+    ```
+    insmod all_video
+    set root='(hd0,4)'
+    linux /boot/vmlinuz-linux root=/dev/nvme0n1p4 rw
+    initrd /boot/initramfs-linux.img
+    ```
+
 -   setup alacritty
 
     -   [`.config/alacritty/alacritty.yml`](https://raw.githubusercontent.com/makitsune/dots/main/.config/alacritty/alacritty.yml) (haven't really touched this in a while)
@@ -313,14 +326,3 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     -   `sudo pacman -S samba`
     -   [`/etc/samba/smb.conf`](https://raw.githubusercontent.com/makitsune/dots/main/etc/samba/smb.conf)
     -   `sudo systemctl enable smb && sudo systemctl start smb`
-
--   fix file permissions when copying from ntfs
-
-    ```bash
-    find Files/* -type d -exec chmod 755 {} +
-    ind Files/* -type f -exec chmod 644 {} +
-    ```
-
--   guide to install affinity suite
-
-    https://codeberg.org/wanesty/affinity-wine-docs/src/branch/guide-wine8.14
