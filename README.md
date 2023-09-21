@@ -301,6 +301,10 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
     https://codeberg.org/wanesty/affinity-wine-docs/src/branch/guide-wine8.14
 
+-   themes
+
+    -   [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme#kde-colorscheme)
+
 ## 4.5. Extras (not really using)
 
 -   when using grub2win (try to avoid it i guess)
