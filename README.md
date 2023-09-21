@@ -294,7 +294,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
     -   extensions
 
-        -   [Vertical overview](https://extensions.gnome.org/extension/4144/vertical-overview/)
+        -   [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/) or [Vertical overview](https://extensions.gnome.org/extension/4144/vertical-overview/)
         -   [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
 
     -   using tweaks, disable **Middle Click Paste** in **Keyboard & Mouse**
