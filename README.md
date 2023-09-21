@@ -256,7 +256,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     `pacman -S xorg-server xorg-xinit`
 
 -   install desktop environment<br>
-    `pacman -S gnome gnome-extra`
+    `pacman -S gnome gnome-extra gnome-themes-extra`
 
 -   install and enable desktop manager<br>
     `pacman -S gdm`<br>
