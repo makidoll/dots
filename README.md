@@ -234,23 +234,12 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   install video driver specific for your hardware
 
-    open source:
+    see more here: https://wiki.archlinux.org/title/Xorg#Driver_installation
 
-    | Brand  | Driver               |
-    | ------ | -------------------- |
-    | AMD    | `xf86-video-amdgpu`  |
-    |        | `xf86-video-ati`     |
-    | Intel  | `xf86-video-intel`   |
-    | Nvidia | `xf86-video-nouveau` |
-
-    proprietary:
-
-    | Brand  | Driver           |
-    | ------ | ---------------- |
-    | AMD    | `catalyst` (aur) |
-    | Nvidia | `nvidia`         |
-    |        | `nvidia-340xx`   |
-    |        | `nvidia-304xx`   |
+    | Brand  | Type        | Packages                                                         |
+    | ------ | ----------- | ---------------------------------------------------------------- |
+    | NVIDIA | Proprietary | `nvidia nvidia-utils lib32-nvidia-utils`                         |
+    | AMD    | Open Source | `xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon` |
 
 -   install Xorg packages<br>
     `pacman -S xorg-server xorg-xinit`
