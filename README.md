@@ -9,24 +9,6 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 <ul>
 <li>
 <details>
-<summary>BIOS/MBR</summary>
-    
--   create a single partition and make it bootable<br>
-    `cfdisk /dev/nvme0n1`
-
--   build ext4 filesystem to it<br>
-    `mkfs.ext4 /dev/nvme0n1p1`
-
--   mount the new partition<br>
-    `mount /dev/nvme0n1p1 /mnt`
-
-</details>
-</li>
-</ul>
-
-<ul>
-<li>
-<details>
 <summary>UEFI/GPT (w or w/o Windows installed)</summary>
     
 -   create a 512 MB parition, type: EFI system **(don't if you already have one)**<br>
@@ -53,6 +35,24 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     -   create seperate directory and mount<br>
         `mkdir /mnt/efi`<br>
         `mount /dev/nvme0n1p1 /mnt/efi`
+
+</details>
+</li>
+</ul>
+
+<ul>
+<li>
+<details>
+<summary>BIOS/MBR (legacy)</summary>
+    
+-   create a single partition and make it bootable<br>
+    `cfdisk /dev/nvme0n1`
+
+-   build ext4 filesystem to it<br>
+    `mkfs.ext4 /dev/nvme0n1p1`
+
+-   mount the new partition<br>
+    `mount /dev/nvme0n1p1 /mnt`
 
 </details>
 </li>
@@ -145,7 +145,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 <ul>
 <li>
 <details>
-<summary>BIOS/MBR</summary>
+<summary>BIOS/MBR (legacy)</summary>
     
 -   install and configure grub<br>
     `pacman -S grub os-prober`<br>
