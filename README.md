@@ -29,11 +29,11 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 <details>
 <summary>UEFI/GPT (w or w/o Windows installed)</summary>
     
--   create a 512 MB parition, type: EFI system (don't if you already have one)<br>
+-   create a 512 MB parition, type: EFI system **(don't if you already have one)**<br>
     create second parition for the rest<br>
     `cfdisk /dev/nvme0n1`
 
--   build FAT32 on 512 MB one (only if you made one)<br>
+-   build FAT32 on 512 MB one **(only if you made one)**<br>
     `mkfs.fat -F32 /dev/nvme0n1p1`
 
 -   build ext4 on the other<br>
@@ -42,11 +42,17 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   mount the large ext4 partition<br>
     `mount /dev/nvme0n1p2 /mnt`
 
--   create directory boot on it<br>
-    `mkdir /mnt/boot`
+-   if you **just made** an EFI partition
 
--   mount 512 MB one into boot (only if you're installing Linux first)<br>
-    `mount /dev/nvme0n1p1 /mnt/boot`
+    -   create directory and mount<br>
+        `mkdir /mnt/boot`<br>
+        `mount /dev/nvme0n1p1 /mnt/boot`
+
+-   otherwise, if you **already have** one<br>
+
+    -   create seperate directory and mount<br>
+        `mkdir /mnt/efi`<br>
+        `mount /dev/nvme0n1p1 /mnt/efi`
 
 </details>
 </li>
@@ -70,12 +76,32 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 <ul>
 <li>
 <details>
-<summary>BIOS/MBR</summary>
+<summary>UEFI/GPT</summary>
     
--   install and configure grub<br>
-    `pacman -S grub os-prober`<br>
-    `grub-install --recheck /dev/nvme0n1`<br>
+-   install amd-ucode or intel-ucode depending on CPU<br>
+    `pacman -S amd-ucode`
+    
+- Pick a bootloader. Find more here: https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
+
+<ul>
+<li>
+<details>
+<summary>grub (includes os-prober for Windows)</summary>
+
+-   install a packages<br>
+    `pacman -S grub efibootmgr os-prober`
+
+-   uncomment GRUB_DISABLE_OS_PROBER=false<br>
+    `nano /etc/default/grub`
+
+-   if you **just made** an EFI parition<br>
+    `mkdir /boot/EFI`<br>
+    `grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB`<br>
     `grub-mkconfig -o /boot/grub/grub.cfg`
+
+-   if you **already had** an EFI parition<br>
+    `grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB`<br>
+    `grub-mkconfig -o /boot/grub/grub.cfg` (maybe this needs to be /efi/grub/grub.cfg?)
 
 </details>
 </li>
@@ -84,10 +110,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 <ul>
 <li>
 <details>
-<summary>UEFI/GPT (w/o Windows)</summary>
-
--   install amd-ucode or intel-ucode<br>
-    `pacman -S amd-ucode`
+<summary>systemd-boot</summary>
 
 -   install systemd bootloader<br>
     `bootctl install`
@@ -115,35 +138,19 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 </li>
 </ul>
 
+</details>
+</li>
+</ul>
+
 <ul>
 <li>
 <details>
-<summary>UEFI/GPT (with Windows)</summary>
-
--   exit out of chroot<br>
-    `exit`
-
--   make /mnt/efi and mount the Windows EFI partition<br>
-
-    ```bash
-    mkdir /mnt/efi
-    mount /dev/sda1 /mnt/efi
-    ```
-
--   chroot into the new system<br>
-    `arch-chroot /mnt`
-
--   install a couple packages<br>
-    `pacman -S grub efibootmgr os-prober`
-
--   uncomment GRUB_DISABLE_OS_PROBER=false<br>
-    `nano /etc/default/grub`
-
--   install grub to the EFI partition<br>
-    ```bash
-    grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
-    grub-mkconfig -o /boot/grub/grub.cfg
-    ```
+<summary>BIOS/MBR</summary>
+    
+-   install and configure grub<br>
+    `pacman -S grub os-prober`<br>
+    `grub-install --recheck /dev/nvme0n1`<br>
+    `grub-mkconfig -o /boot/grub/grub.cfg`
 
 </details>
 </li>
