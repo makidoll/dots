@@ -94,6 +94,10 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   uncomment GRUB_DISABLE_OS_PROBER=false<br>
     `nano /etc/default/grub`
 
+-   add to end of GRUB_CMDLINE_LINUX_DEFAULT <br>
+
+    `fsck.mode=force nvidia_drm.modeset=1`
+
 -   if you **just made** an EFI parition<br>
     `mkdir /boot/EFI`<br>
     `grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB`<br>
@@ -115,7 +119,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   install systemd bootloader<br>
     `bootctl install`
 
--   create new boot entry<br>
+-   create new boot entry (nvidia_drm needed for wayland)<br>
     `nano /boot/loader/entries/arch.conf`
 
     ```
@@ -123,7 +127,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     linux		/vmlinuz-linux
     initrd		/amd-ucode.img
     initrd		/initramfs-linux.img
-    options		root=/dev/nvme0n1p2 rw
+    options		root=/dev/nvme0n1p2 rw fsck.mode=force nvidia_drm.modeset=1
     ```
 
 -   set the default entry<br>
