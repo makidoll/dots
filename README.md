@@ -218,12 +218,13 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     vm.swappiness=10
     ```
 
--   enable color and x86 repo in pacman.conf<br>
+-   uncomment color and parallel downloads, and enable x86 repo in pacman.conf<br>
     `nano /etc/pacman.conf`
 
     ```
     # Misc options
     Color
+    ParallelDownloads = 5
 
     [multilib]
     Include = /etc/pacman.d/mirrorlist
