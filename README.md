@@ -1,5 +1,7 @@
 # Maki's Arch Install Guide
 
+> ⚠️ This needs an overhaul
+
 This could get outdated any time, but _i use arch btw_ so I'm sure it'll get updated!
 
 ## 1. Core installation
