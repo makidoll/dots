@@ -95,7 +95,6 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     `nano /etc/default/grub`
 
 -   add to end of GRUB_CMDLINE_LINUX_DEFAULT <br>
-
     `fsck.mode=force nvidia_drm.modeset=1`
 
 -   if you **just made** an EFI parition<br>
