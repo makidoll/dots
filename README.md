@@ -95,12 +95,12 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     `nano /boot/loader/entries/arch.conf`
 
     ```
-    title		Arch Linux
-    linux		/vmlinuz-linux
-    initrd		/amd-ucode.img
-    initrd		/initramfs-linux.img
-    options		root=UUID=<uuid> rw quiet splash
-    options     fsck.mode=force nvidia_drm.modeset=1
+    title Arch Linux
+    linux /vmlinuz-linux
+    initrd /amd-ucode.img
+    initrd /initramfs-linux.img
+    options root=UUID=<uuid> rw quiet splash
+    options fsck.mode=force nvidia_drm.modeset=1
     ```
 
 -   set the default entry<br>
