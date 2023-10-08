@@ -271,7 +271,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 -   refresh your mirrorlist
 
-    `sudo reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist`
+    `sudo reflector --country US --latest 25 --score 25 --sort rate --protocol https --verbose --save /etc/pacman.d/mirrorlist`
 
 -   install yay aur helper
 
