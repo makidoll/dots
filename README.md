@@ -81,12 +81,44 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   install amd-ucode or intel-ucode depending on CPU<br>
     `pacman -S amd-ucode`
     
-- Pick a bootloader. Find more here: https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
+-    pick a bootloader, both work with Windows. find more here: https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
 
 <ul>
 <li>
 <details>
-<summary>grub (includes os-prober for Windows)</summary>
+<summary>systemd-boot (finds windows automatically)</summary>
+
+-   install systemd bootloader (read --help)<br>
+    `bootctl install`
+
+-   create new boot entry (nvidia_drm needed for wayland)<br>
+    `nano /boot/loader/entries/arch.conf`
+
+    ```
+    title		Arch Linux
+    linux		/vmlinuz-linux
+    initrd		/amd-ucode.img
+    initrd		/initramfs-linux.img
+    options		root=UUID=<uuid> rw quiet splash
+    options     fsck.mode=force nvidia_drm.modeset=1
+    ```
+
+-   set the default entry<br>
+    `nano /boot/loader/loader.conf`
+
+    ```
+    timeout 5
+    default arch
+    ```
+
+</details>
+</li>
+</ul>
+
+<ul>
+<li>
+<details>
+<summary>grub (with os-prober)</summary>
 
 -   install a packages<br>
     `pacman -S grub efibootmgr os-prober`
@@ -105,37 +137,6 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   if you **already had** an EFI parition<br>
     `grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB`<br>
     `grub-mkconfig -o /boot/grub/grub.cfg` (maybe this needs to be /efi/grub/grub.cfg?)
-
-</details>
-</li>
-</ul>
-
-<ul>
-<li>
-<details>
-<summary>systemd-boot</summary>
-
--   install systemd bootloader<br>
-    `bootctl install`
-
--   create new boot entry (nvidia_drm needed for wayland)<br>
-    `nano /boot/loader/entries/arch.conf`
-
-    ```
-    title		Arch Linux
-    linux		/vmlinuz-linux
-    initrd		/amd-ucode.img
-    initrd		/initramfs-linux.img
-    options		root=/dev/nvme0n1p2 rw fsck.mode=force nvidia_drm.modeset=1
-    ```
-
--   set the default entry<br>
-    `nano /boot/loader/loader.conf`
-
-    ```
-    timeout 3
-    default arch
-    ```
 
 </details>
 </li>
