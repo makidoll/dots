@@ -308,6 +308,11 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
     -   [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme#kde-colorscheme)
 
+-   setup deadbeef
+
+    -   `yay -S deadbeef-git deadbeef-mpris2-plugin deadbeef-plugin-fb-gtk3-git deadbeef-plugin-spectrogram-gtk3-git`
+    -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
+
 ## 4.5. Extras (not really using)
 
 -   when using grub2win (try to avoid it i guess)
@@ -322,11 +327,6 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   setup alacritty
 
     -   [`.config/alacritty/alacritty.yml`](https://raw.githubusercontent.com/makitsune/dots/main/.config/alacritty/alacritty.yml) (haven't really touched this in a while)
-
--   setup deadbeef
-
-    -   `yay -S deadbeef deadbeef-gnome-mmkeys-git deadbeef-plugin-fb-gtk3-git deadbeef-plugin-musical-spectrum-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-pipewire-gtk3-git deadbeef-plugin-discord-git`
-    -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
 
 -   setup smb for sonos music library
 

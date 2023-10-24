@@ -1,45 +1,38 @@
-artwork.cache.period 48
-artwork.enable_albumartorg 0
+artwork.cache.expiration_time 0.000000
+artwork.cache.simplified 0
+artwork.cache_reset_time 0
 artwork.enable_embedded 1
 artwork.enable_lastfm 0
 artwork.enable_localfolder 1
-artwork.enable_musicbrainz 0
 artwork.enable_wos 0
-artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*folder*.png
+artwork.filemask front.png;front.jpg;front.jpeg;folder.png;folder.jpg;folder.jpeg;cover.png;cover.jpg;cover.jpeg;f.png;f.jpg;f.jpeg;*front*.png;*front*.jpg;*front*.jpeg;*cover*.png;*cover*.jpg;*cover.jpeg;*folder*.png;*folder*.jpg;*folder*.jpeg;*.png;*.jpg;*.jpeg
+artwork.folders art;scans;covers;artwork;artworks
+artwork.image_size 1024.000000
 artwork.missing_artwork 0
 artwork.nocover_path 
-artwork.scale_towards_longer 1
+artwork.save_to_music_folders 0
+artwork.save_to_music_folders_relative_path cover.jpg
 cli_add_playlist_name Default
-close_send_to_tray 1
-deadbeef_version 1.8.8
-discord_presence.enable 1
-discord_presence.end_timestamp 1
-discord_presence.hide_on_pause 1
-discord_presence.icon_script %artist% '/' %album%
-discord_presence.paused_icon 0
-discord_presence.playlist_on_state 0
-discord_presence.show_tracknum 0
-discord_presence.state_script %artist%
-discord_presence.title_script %title% $if(%ispaused%,'('paused')')
+deadbeef_version devel
 filebrowser.autofilter 1
-filebrowser.bgcolor 
-filebrowser.bgcolor_selected 
+filebrowser.bgcolor #000000
+filebrowser.bgcolor_selected #000000
 filebrowser.coverart_files cover.png;cover.jpg;folder.png;folder.jpg;front.png;front.jpg
 filebrowser.coverart_scale 1
 filebrowser.coverart_size 24
 filebrowser.defaultpath /home/maki/Files/Music
 filebrowser.enabled 1
-filebrowser.expanded_rows file:///home/maki/Files/Music/iTunes file:///home/maki/Files/Music/Disasterpeace%20-%20FEZ%20OST file:///home/maki/Files/Music/Bandcamp
-filebrowser.extra_bookmarks $HOME/.config/deadbeef/bookmarks
-filebrowser.fgcolor 
-filebrowser.fgcolor_selected 
+filebrowser.expanded_rows file:///home/maki/Files/Music/Bandcamp
+filebrowser.extra_bookmarks 
+filebrowser.fgcolor #000000
+filebrowser.fgcolor_selected #000000
 filebrowser.filter 
 filebrowser.filter_enabled 0
 filebrowser.font_size 0
 filebrowser.fullsearch_wait 5
 filebrowser.hidden 0
 filebrowser.hide_navigation 1
-filebrowser.hide_search 1
+filebrowser.hide_search 0
 filebrowser.hide_toolbar 1
 filebrowser.icon_size 24
 filebrowser.save_treeview 1
@@ -48,30 +41,18 @@ filebrowser.show_coverart 1
 filebrowser.showbookmarks 0
 filebrowser.showhidden 0
 filebrowser.showicons 1
-filebrowser.sidebar_width 200
+filebrowser.sidebar_width 220
 filebrowser.sort_treeview 1
-filebrowser.treelines 0
-filechooser.lastdir file:///home/maki/Files/Music
-gtkui.color.bar_background 65535 65535 65535
-gtkui.color.listview_cursor 30583 30326 31611
-gtkui.color.listview_even_row 15677 14392 17990
-gtkui.color.listview_odd_row 9252 7967 12593
-gtkui.color.tabstrip_base 63222 62965 62708
-gtkui.color.tabstrip_light 65535 65535 65535
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"182","align":"0","color_override":"0","color":"#ff000000"},{"title":"Disk No","id":"9","format":"%discnumber%","sort_format":"","size":"62","align":"1","color_override":"0","color":"#ff2e3436"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"289","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
-gtkui.embolden_current_track 0
-gtkui.hide_tray_icon 0
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } hsplitter locked=0 ratio=0.297824 pos=0 size2=0 {vsplitter locked=0 ratio=0.847283 pos=0 size2=0 {filebrowser {} musical_spectrum {} } hsplitter locked=0 ratio=0.645296 pos=0 size2=0 {vsplitter locked=0 ratio=0.847569 pos=0 size2=0 {playlist hideheaders=0 width=712 {} spectrogram {} } vsplitter locked=0 ratio=0.649146 pos=0 size2=0 {selproperties {} coverart {} } } } } 
-gtkui.override_bar_colors 0
-gtkui.override_listview_colors 0
-gtkui.override_tabstrip_colors 0
-gtkui.pltbrowser.show_headers 1
-gtkui.start_hidden 0
+filebrowser.treelines 1
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"32","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"37","align":"1","color_override":"0","color":"#ff000000"},{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"322","align":"0","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"200","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"81","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.layout.1.9.0 {"type":"vbox","legacy_params":" expand=\"0 1\" fill=\"0 1\" homogeneous=0","children":[{"type":"hbox","legacy_params":" expand=\"0 1\" fill=\"0 1\" homogeneous=0","children":[{"type":"playtb"},{"type":"hsplitter","legacy_params":" locked=0 ratio=0.093230 pos=0 size2=0","children":[{"type":"volumebar","settings":{"scale":"db"}},{"type":"seekbar"}]}]},{"type":"hsplitter","legacy_params":" locked=0 ratio=0.264484 pos=0 size2=0","children":[{"type":"vsplitter","legacy_params":" locked=0 ratio=0.836547 pos=0 size2=0","children":[{"type":"filebrowser"},{"type":"spectrum","settings":{"renderMode":"bands","distanceBetweenBars":"3","barGranularity":"2"}}]},{"type":"hsplitter","legacy_params":" locked=0 ratio=0.695802 pos=0 size2=0","children":[{"type":"vsplitter","legacy_params":" locked=0 ratio=0.834711 pos=0 size2=0","children":[{"type":"tabbed_playlist","legacy_params":" hideheaders=0 width=1012"},{"type":"spectrogram"}]},{"type":"vsplitter","legacy_params":" locked=0 ratio=0.613407 pos=0 size2=0","children":[{"type":"selproperties","settings":{"section":"properties,metadata","showheaders":"0"}},{"type":"coverart","settings":{"mode":"selected"}}]}]}]}]}
+gtkui.playlist.group_by_tf 
+gtkui.search.group_by_tf 
 gtkui.statusbar.visible 1
-gtkui.statusbar_seltime 0
 gtkui.tabscroll 0
-gtkui.titlebar_playing_tf %artist% - %title% - DeaDBeeF-%_deadbeef_version%
-gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
+gtkui.titlebar_playing_tf DeaDBeeF - %artist% - %title%
+gtkui.titlebar_stopped_tf DeaDBeeF
 gui_plugin GTK3
 hotkey.key01 "Ctrl f" 0 0 find
 hotkey.key02 "Ctrl o" 0 0 open_files
@@ -105,35 +86,33 @@ hotkey.key30 b 0 0 next
 hotkey.key31 n 0 0 playback_random
 hotkey.key32 "Ctrl k" 0 0 toggle_stop_after_album
 hotkeys_created 1
-logwindow.geometry.h 200
-logwindow.geometry.w 400
+logwindow.geometry.h 1280
+logwindow.geometry.w 1216
 logwindow.geometry.x 40
 logwindow.geometry.y 40
-mainwin.geometry.h 866
-mainwin.geometry.maximized 0
-mainwin.geometry.w 1580
-mainwin.geometry.x 145
-mainwin.geometry.y 96
+mainwin.geometry.h 1192
+mainwin.geometry.w 1985
+mainwin.geometry.x 243
+mainwin.geometry.y 71
 network.proxy.port 8080
 output_plugin pipewire
-pipewire_soundcard default
+pipewire.properties 
+pipewire.remotename 
+pipewire.volumecontrol 1
 playback.loop 1
-playback.volume -15.00000
-playlist.current 0
-playlist.cursor.0 224
-playlist.cursor.1 0
-playlist.scroll.0 5330
-playlist.scroll.1 0
+playback.volume.normalized 0.2498625
+playlist.cursor.0 14
+playlist.scroll.0 -14
 playlist.scroll.cursorfollowplayback 1
-playlist.tab.00000 Music
-prefwin.geometry.h 676
-prefwin.geometry.w 849
-prefwin.geometry.x 978
-prefwin.geometry.y 263
+playlist.tab.00000 Default
+prefwin.geometry.h 920
+prefwin.geometry.w 1146
+prefwin.geometry.x 596
+prefwin.geometry.y 368
 resume.paused 0
 resume.playlist 0
-resume.position 2.1047623
-resume.track 224
+resume.position 916.77587
+resume.track 14
 spectrogram.color.gradient_00 65535 0 0
 spectrogram.color.gradient_01 65535 32896 0
 spectrogram.color.gradient_02 65535 65535 0
@@ -145,9 +124,7 @@ spectrogram.db_range 70
 spectrogram.log_scale 1
 spectrogram.num_colors 7
 spectrogram.refresh_interval 25
-streamer.16_to_24 1
-streamer.override_samplerate 0
-streamer.samplerate 48000
+streamer.bit_override 0
+streamer.samplerate 44100
 streamer.samplerate_mult_44 44100
 streamer.samplerate_mult_48 48000
-streamer.use_dependent_samplerate 0
