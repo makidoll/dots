@@ -296,8 +296,17 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
     -   extensions
 
-        -   [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/), [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/) or [Vertical overview](https://extensions.gnome.org/extension/4144/vertical-overview/)
-        -   [Tray Icons: Reloaded](https://extensions.gnome.org/extension/2890/tray-icons-reloaded/)
+        -   [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/)
+        -   [Freon](https://extensions.gnome.org/extension/841/freon/)
+        -   [GameMode](https://extensions.gnome.org/extension/1852/gamemode/)
+        -   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/)
+        -   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/)
+
+        honorable but not using
+
+        -   [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
+        -   [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
+        -   [Vertical overview](https://extensions.gnome.org/extension/4144/vertical-overview/)
 
     -   using tweaks, disable **Middle Click Paste** in **Keyboard & Mouse**
 
