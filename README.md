@@ -15,13 +15,15 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     create second parition for the rest<br>
     `cfdisk /dev/nvme0n1`
 
--   build FAT32 on 512 MB one **(only if you made one)**<br>
-    `mkfs.fat -F32 /dev/nvme0n1p1`
+-   mkfs FAT32 on 512 MB one **(only if you made one)**<br>
+    `mkfs.fat -F32 -L "Maki EFI" /dev/nvme0n1p1`
 
--   build ext4 on the other<br>
-    `mkfs.ext4 /dev/nvme0n1p2`
+-   mkfs btrfs on the other<br>
+    `mkfs.btrfs -L "Maki Arch" /dev/nvme0n1p2`
+    or ext4<br>
+    `mkfs.ext4 -L "Maki Arch" /dev/nvme0n1p2`
 
--   mount the large ext4 partition<br>
+-   mount the root partition<br>
     `mount /dev/nvme0n1p2 /mnt`
 
 -   if you **just made** an EFI partition
@@ -48,8 +50,10 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   create a single partition and make it bootable<br>
     `cfdisk /dev/nvme0n1`
 
--   build ext4 filesystem to it<br>
-    `mkfs.ext4 /dev/nvme0n1p1`
+-   mkfs btrfs on the other<br>
+    `mkfs.btrfs -L "Maki Arch" /dev/nvme0n1p1`
+    or ext4<br>
+    `mkfs.ext4 -L "Maki Arch" /dev/nvme0n1p1`
 
 -   mount the new partition<br>
     `mount /dev/nvme0n1p1 /mnt`
@@ -91,7 +95,7 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   install systemd bootloader (read --help)<br>
     `bootctl install`
 
--   create new boot entry (nvidia_drm needed for wayland)<br>
+-   create new boot entry<br>
     `nano /boot/loader/entries/arch.conf`
 
     ```
@@ -99,9 +103,13 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
     linux /vmlinuz-linux
     initrd /amd-ucode.img
     initrd /initramfs-linux.img
-    options root=UUID=<uuid> rw quiet splash
+    options root="LABEL=Maki Arch" rw quiet splash
     options fsck.mode=force nvidia_drm.modeset=1
     ```
+
+    -   could remove `loglevel=3` and just set `quiet splash`
+    -   could replace `root="LABEL=Maki Arch"` with `root=UUID=<uuid>`
+    -   `nvidia_drm` needed for wayland and more
 
 -   set the default entry<br>
     `nano /boot/loader/loader.conf`
