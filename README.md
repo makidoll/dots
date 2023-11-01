@@ -6,61 +6,68 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 
 ## 1. Core installation
 
-<ul>
-<li>
-<details>
-<summary>UEFI/GPT (w or w/o Windows installed)</summary>
-    
+this guide will only work with uefi
+
 -   create a 512 MB parition, type: EFI system **(don't if you already have one)**<br>
     create second parition for the rest<br>
     `cfdisk /dev/nvme0n1`
 
 -   mkfs FAT32 on 512 MB one **(only if you made one)**<br>
-    `mkfs.fat -F32 -L "Maki EFI" /dev/nvme0n1p1`
+    `mkfs.fat -F32 /dev/nvme0n1p1`<br>
+    `fatlabel /dev/nvme0n1p1 MAKI_EFI`
 
--   mkfs btrfs on the other<br>
-    `mkfs.btrfs -L "Maki Arch" /dev/nvme0n1p2`
-    or ext4<br>
-    `mkfs.ext4 -L "Maki Arch" /dev/nvme0n1p2`
+-   <details>
+    <summary>btrfs (fun and more complicated)</summary>
 
--   mount the root partition<br>
-    `mount /dev/nvme0n1p2 /mnt`
+    -   mkfs btrfs on the other<br>
+        `mkfs.btrfs /dev/nvme0n1p2`<br>
+        `btrfs filesystem label /dev/nvme0n1p2 MAKI_ARCH`<br>
+
+    -   verify labels with<br>
+        `lsblk -o name,label`
+
+    -   mount the partition<br>
+        `mount /dev/disk/by-label/MAKI_ARCH /mnt`
+
+    -   create two subvolumes<br>
+        `btrfs sub create /mnt/@`<br>
+        `btrfs sub create /mnt/@home`
+
+    -   unmount the partition<br>
+        `umount /mnt`
+
+    -   mount new subvolumes<br>
+        `mount -o subvol=@ /dev/disk/by-label/MAKI_ARCH /mnt`<br>
+        `mount -o subvol=@home /dev/disk/by-label/MAKI_ARCH /mnt/home`
+
+    </details>
+
+    <details>
+    <summary>ext4 (simple and stable)</summary>
+
+    -   mkfs ext4 on the other<br>
+        `mkfs.ext4 -L "Maki Arch" /dev/nvme0n1p2`<br>
+        `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
+
+    -   verify labels with<br>
+        `lsblk -o name,label`
+
+    -   mount the root partition<br>
+        `mount /dev/nvme0n1p2 /mnt`
+
+    </details>
 
 -   if you **just made** an EFI partition
 
     -   create directory and mount<br>
         `mkdir /mnt/boot`<br>
-        `mount /dev/nvme0n1p1 /mnt/boot`
+        `mount /dev/disk/by-label/MAKI_EFI /mnt/boot`
 
 -   otherwise, if you **already have** one<br>
 
     -   create seperate directory and mount<br>
         `mkdir /mnt/efi`<br>
         `mount /dev/nvme0n1p1 /mnt/efi`
-
-</details>
-</li>
-</ul>
-
-<ul>
-<li>
-<details>
-<summary>BIOS/MBR (legacy)</summary>
-    
--   create a single partition and make it bootable<br>
-    `cfdisk /dev/nvme0n1`
-
--   mkfs btrfs on the other<br>
-    `mkfs.btrfs -L "Maki Arch" /dev/nvme0n1p1`
-    or ext4<br>
-    `mkfs.ext4 -L "Maki Arch" /dev/nvme0n1p1`
-
--   mount the new partition<br>
-    `mount /dev/nvme0n1p1 /mnt`
-
-</details>
-</li>
-</ul>
 
 -   (optional) set geographicly close mirror top<br>
     `nano /etc/pacman.d/mirrorlist`
@@ -77,96 +84,70 @@ This could get outdated any time, but _i use arch btw_ so I'm sure it'll get upd
 -   set password for root<br>
     `passwd`
 
-<ul>
-<li>
-<details>
-<summary>UEFI/GPT</summary>
-    
 -   install amd-ucode or intel-ucode depending on CPU<br>
     `pacman -S amd-ucode`
-    
--    pick a bootloader, both work with Windows. find more here: https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
 
-<ul>
-<li>
-<details>
-<summary>systemd-boot (finds windows automatically)</summary>
+-   pick a bootloader, both work with Windows. find more here: https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
 
--   install systemd bootloader (read --help)<br>
-    `bootctl install`
+    <details>
+    <summary>systemd-boot (finds windows automatically)</summary>
 
--   create new boot entry<br>
-    `nano /boot/loader/entries/arch.conf`
+    -   install systemd bootloader (read --help)<br>
+        `bootctl install`
 
-    ```
-    title Arch Linux
-    linux /vmlinuz-linux
-    initrd /amd-ucode.img
-    initrd /initramfs-linux.img
-    options root="LABEL=Maki Arch" rw quiet splash
-    options fsck.mode=force nvidia_drm.modeset=1
-    ```
+    -   create new boot entry<br>
+        `nano /boot/loader/entries/arch.conf`
 
-    -   could remove `loglevel=3` and just set `quiet splash`
-    -   could replace `root="LABEL=Maki Arch"` with `root=UUID=<uuid>`
-    -   `nvidia_drm` needed for wayland and more
+        ```
+        title Arch Linux
+        linux /vmlinuz-linux
+        initrd /amd-ucode.img
+        initrd /initramfs-linux.img
+        options root=LABEL=MAKI_ARCH rootflags=subvol=@
+        options rw loglevel=3 nvidia_drm.modeset=1
+        ```
 
--   set the default entry<br>
-    `nano /boot/loader/loader.conf`
+        -   remove `rootflags=subvol=@` if using ext4
+        -   add `fsck.mode=force` if using ext4
+        -   `nvidia_drm` needed for wayland and such
 
-    ```
-    timeout 5
-    default arch
-    ```
+        -   could remove `loglevel=3` and just set `quiet splash`
+        -   could replace `root=LABEL=MAKI_ARCH` with `root=UUID=<uuid>`
 
-</details>
-</li>
-</ul>
+    -   set the default entry<br>
+        `nano /boot/loader/loader.conf`
 
-<ul>
-<li>
-<details>
-<summary>grub (with os-prober)</summary>
+        ```
+        timeout 5
+        default arch
+        ```
 
--   install a packages<br>
-    `pacman -S grub efibootmgr os-prober`
+    </details>
 
--   uncomment GRUB_DISABLE_OS_PROBER=false<br>
-    `nano /etc/default/grub`
+    <details>
+    <summary>grub (with os-prober)</summary>
 
--   add to end of GRUB_CMDLINE_LINUX_DEFAULT <br>
-    `fsck.mode=force nvidia_drm.modeset=1`
+    i havent really played with grub on btrfs before. just remove `fsck.mode=force` cause its noop
 
--   if you **just made** an EFI parition<br>
-    `mkdir /boot/EFI`<br>
-    `grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB`<br>
-    `grub-mkconfig -o /boot/grub/grub.cfg`
+    -   install a packages<br>
+        `pacman -S grub efibootmgr os-prober`
 
--   if you **already had** an EFI parition<br>
-    `grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB`<br>
-    `grub-mkconfig -o /boot/grub/grub.cfg` (maybe this needs to be /efi/grub/grub.cfg?)
+    -   uncomment GRUB_DISABLE_OS_PROBER=false<br>
+        `nano /etc/default/grub`
 
-</details>
-</li>
-</ul>
+    -   add to end of GRUB_CMDLINE_LINUX_DEFAULT <br>
+        `fsck.mode=force nvidia_drm.modeset=1`
 
-</details>
-</li>
-</ul>
+    -   if you **just made** an EFI parition<br>
+        `mkdir /boot/EFI`<br>
+        `grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB`<br>
+        `grub-mkconfig -o /boot/grub/grub.cfg`
 
-<ul>
-<li>
-<details>
-<summary>BIOS/MBR (legacy)</summary>
-    
--   install and configure grub<br>
-    `pacman -S grub os-prober`<br>
-    `grub-install --recheck /dev/nvme0n1`<br>
-    `grub-mkconfig -o /boot/grub/grub.cfg`
+    -   if you **already had** an EFI parition<br>
+        `grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB`<br>
+        `grub-mkconfig -o /boot/grub/grub.cfg` (maybe this needs to be /efi/grub/grub.cfg?)
 
-</details>
-</li>
-</ul>
+    </details>
 
 -   remove the bootable media, restart PC<br>
     `exit`<br>
