@@ -53,7 +53,7 @@ this guide will only work with uefi
         `lsblk -o name,label`
 
     -   mount the root partition<br>
-        `mount /dev/nvme0n1p2 /mnt`
+        `mount /dev/disk/by-label/MAKI_ARCH /mnt`
 
     </details>
 
@@ -109,8 +109,7 @@ this guide will only work with uefi
 
         -   remove `rootflags=subvol=@` if using ext4
         -   add `fsck.mode=force` if using ext4
-        -   `nvidia_drm` needed for wayland and such
-
+        -   `nvidia_drm.modeset=1` needed for wayland and such
         -   could remove `loglevel=3` and just set `quiet splash`
         -   could replace `root=LABEL=MAKI_ARCH` with `root=UUID=<uuid>`
 
@@ -127,7 +126,7 @@ this guide will only work with uefi
     <details>
     <summary>grub (with os-prober)</summary>
 
-    i havent really played with grub on btrfs before. just remove `fsck.mode=force` cause its noop
+    -   _i havent really tried grub with btrfs before. just remove `fsck.mode=force` cause its noop. the rest is up to you_
 
     -   install a packages<br>
         `pacman -S grub efibootmgr os-prober`
