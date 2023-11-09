@@ -171,12 +171,9 @@ this guide will only work with uefi
     %wheel ALL=(ALL) ALL
     ```
 
--   check the name of your network interface<br>
-    `ip link`
-
--   start aquiring dynamic IP<br>
+-   check the name of your network interface and start dhcp (don't enable)<br>
+    `ip a`<br>
     `systemctl start dhcpcd@enp60s0`<br>
-    `systemctl enable dhcpcd@enp60s0`
 
 -   uncomment desired locales in locale.gen<br>
     `nano /etc/locale.gen`
@@ -227,7 +224,12 @@ this guide will only work with uefi
 
 ## 3. Desktop environment
 
--   login as regular user
+-   login as your user
+
+-   check the name of your network interface and start dhcp (don't enable)<br>
+    `ip a`<br>
+    `systemctl start dhcpcd@enp60s0`<br>
+
 -   install the default video driver<br>
     `pacman -S xf86-video-vesa`
 
@@ -248,6 +250,11 @@ this guide will only work with uefi
 
 -   install desktop environment<br>
     `pacman -S gnome gnome-extra gnome-themes-extra`
+
+-   may want to stop your dhcp server and install networkmanager for gnome<br>
+    `pacman -S networkmanager`<br>
+    `systemctl stop dhcpcd@enp60s0`<br>
+    `systemctl enable --now networkmanager`<br>
 
 -   install and enable desktop manager<br>
     `pacman -S gdm`<br>
