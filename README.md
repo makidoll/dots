@@ -318,10 +318,15 @@ this guide will only work with uefi
     -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
 
 -   firefox with vertical tabs
+
     -   install [sideberry](https://addons.mozilla.org/en-US/firefox/addon/sidebery/) extension
     -   css hack [to hide native tabs](<https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css)#completely-hide-native-tabs-strip>)
     -   also add `#sidebar-header { display: none; }`
     -   install [minimalist dracula darker](https://github.com/makidoll/dots/blob/main/README.md) theme (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
+
+-   fix default programs
+
+    -   `xdg-mime default org.gnome.Nautilus.desktop inode/directory`
 
 ## 4.5. Extras (not really using)
 
