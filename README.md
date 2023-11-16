@@ -322,11 +322,22 @@ this guide will only work with uefi
     -   install [sideberry](https://addons.mozilla.org/en-US/firefox/addon/sidebery/) extension
     -   css hack [to hide native tabs](<https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css)#completely-hide-native-tabs-strip>)
     -   also add `#sidebar-header { display: none; }`
-    -   install [minimalist dracula darker](https://github.com/makidoll/dots/blob/main/README.md) theme (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
+    -   install [`minimalist-dracula-darker.xpi`](https://github.com/makidoll/dots/blob/main/other/minimalist-dracula-darker.xpi) theme (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
 
 -   fix default programs
 
     -   `xdg-mime default org.gnome.Nautilus.desktop inode/directory`
+
+-   use [quickemu](https://aur.archlinux.org/packages/quickemu) for easy windows or mac vm
+
+    -   `mkdir ~/quickemu && cd ~/quickemu`
+    -   `quickget windows 11`
+    -   `quickemu --vm windows-11.conf`
+    -   install spice tools from attached drive and shutdown vm
+    -   download and run [`run-windows.sh`](https://github.com/makidoll/dots/blob/main/other/run-windows.sh)
+    -   install software gl+dx support https://github.com/pal1000/mesa-dist-win/releases
+        -   in admin run `systemwidedeploy.cmd` and `1. Core desktop OpenGL drivers`
+        -   test with [GPU Caps Viewer](https://www.geeks3d.com/dlz/). should be higher than gl 1.0
 
 ## 4.5. Extras (not really using)
 
