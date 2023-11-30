@@ -17,7 +17,22 @@ this guide will only work with uefi
     `fatlabel /dev/nvme0n1p1 MAKI_EFI`
 
 -   <details>
-    <summary>btrfs (fun and more complicated)</summary>
+       <summary>ext4 (simple and stable)</summary>
+
+    -   mkfs ext4 on the other<br>
+        `mkfs.ext4 /dev/nvme0n1p2`<br>
+        `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
+
+    -   verify labels with<br>
+        `lsblk -o name,label`
+
+    -   mount the root partition<br>
+        `mount /dev/disk/by-label/MAKI_ARCH /mnt`
+
+    </details>
+
+    <details>
+    <summary>btrfs (more complicated, personally unrecommended)</summary>
 
     -   mkfs btrfs on the other<br>
         `mkfs.btrfs /dev/nvme0n1p2`<br>
@@ -39,21 +54,6 @@ this guide will only work with uefi
     -   mount new subvolumes<br>
         `mount -o subvol=@ /dev/disk/by-label/MAKI_ARCH /mnt`<br>
         `mount -o subvol=@home /dev/disk/by-label/MAKI_ARCH /mnt/home`
-
-    </details>
-
-    <details>
-    <summary>ext4 (simple and stable)</summary>
-
-    -   mkfs ext4 on the other<br>
-        `mkfs.ext4 -L "Maki Arch" /dev/nvme0n1p2`<br>
-        `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
-
-    -   verify labels with<br>
-        `lsblk -o name,label`
-
-    -   mount the root partition<br>
-        `mount /dev/disk/by-label/MAKI_ARCH /mnt`
 
     </details>
 
@@ -103,12 +103,12 @@ this guide will only work with uefi
         linux /vmlinuz-linux
         initrd /amd-ucode.img
         initrd /initramfs-linux.img
-        options root=LABEL=MAKI_ARCH rootflags=subvol=@
+        options root=LABEL=MAKI_ARCH fsck.mode=force
         options rw loglevel=3 nvidia_drm.modeset=1
         ```
 
-        -   remove `rootflags=subvol=@` if using ext4
-        -   add `fsck.mode=force` if using ext4
+        -   remove `fsck.mode=force` if using btrfs
+        -   add `rootflags=subvol=@` if using btrfs
         -   `nvidia_drm.modeset=1` needed for wayland and such
         -   could remove `loglevel=3` and just set `quiet splash`
         -   could replace `root=LABEL=MAKI_ARCH` with `root=UUID=<uuid>`
