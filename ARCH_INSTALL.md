@@ -73,7 +73,7 @@ this guide will only work with uefi
     `nano /etc/pacman.d/mirrorlist`
 
 -   install the base system<br>
-    `pacstrap /mnt base base-devel linux linux-firmware dhcpcd nano`
+    `pacstrap /mnt base base-devel linux linux-firmware linux-headers dhcpcd nano`
 
 -   generate fstab<br>
     `genfstab -U /mnt > /mnt/etc/fstab`
