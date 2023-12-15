@@ -242,7 +242,7 @@ this guide will only work with uefi
 
     | Brand  | Type        | Packages                                                         |
     | ------ | ----------- | ---------------------------------------------------------------- |
-    | NVIDIA | Proprietary | `nvidia nvidia-utils lib32-nvidia-utils`                         |
+    | NVIDIA | Proprietary | `nvidia-dkms nvidia-utils lib32-nvidia-utils`                         |
     | AMD    | Open Source | `xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon` |
 
 -   install Xorg packages<br>
