@@ -27,15 +27,20 @@
         -   [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/) adds tray icons back
         -   [Freon](https://extensions.gnome.org/extension/841/freon/) shows cpu temp and more
         -   [GameMode](https://extensions.gnome.org/extension/1852/gamemode/) shows indicator when `gamemoderun`
-        -   [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/) brings ready windows into focus
+
         -   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/) gives back space
         -   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) is just nice
+
+        recommended to install above using yay (cause devs arent updating their extensions on gnome.org)
+
+        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-freon-git gnome-shell-extension-gamemode-git gnome-shell-extension-rounded-window-corners-git gnome-shell-extension-hidetopbar-git`
 
         honorable but not using
 
         -   [Dash to Panel](https://extensions.gnome.org/extension/1160/dash-to-panel/)
         -   [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
         -   [Vertical overview](https://extensions.gnome.org/extension/4144/vertical-overview/)
+        -   [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/) brings ready windows into focus
 
 -   fix file permissions when copying from ntfs
 
