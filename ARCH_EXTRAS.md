@@ -58,6 +58,27 @@
     -   `yay -S deadbeef-git deadbeef-mpris2-plugin deadbeef-plugin-fb-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-discord-git`
     -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
 
+-   force microphone to fixed volume using wireplumber ctl and systemd
+
+    -   `vim ~/.config/systemd/user/yeti-nano-60-vol.service`
+
+        ```
+        [Unit]
+        Description=Yeti Nano 60% Volume
+
+        [Service]
+        ExecStart=bash -c 'while sleep 0.1; do wpctl set-volume $(wpctl status | grep -Eio "[0-9]+. Yeti Nano Analog Stereo" | grep -Eio "[0-9]+") 60%; done'
+        Type=simple
+        # treat as a lowest priority program
+        Nice=19
+
+        [Install]
+        WantedBy=default.target
+        ```
+
+    -   `systemctl enable --now --user yeti-nano-60-vol.service`
+    -   `systemctl status --user yeti-nano-60-vol.service` make sure its not erroring
+
 -   firefox with vertical tabs
 
     -   install [sideberry](https://addons.mozilla.org/en-US/firefox/addon/sidebery/) extension
