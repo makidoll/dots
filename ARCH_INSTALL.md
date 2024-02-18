@@ -103,11 +103,11 @@ this guide will only work with uefi
         linux /vmlinuz-linux
         initrd /amd-ucode.img
         initrd /initramfs-linux.img
-        options root=LABEL=MAKI_ARCH fsck.mode=force
+        options root=LABEL=MAKI_ARCH fsck.mode=force fsck.repair=yes
         options rw loglevel=3 nvidia_drm.modeset=1
         ```
 
-        -   remove `fsck.mode=force` if using btrfs
+        -   remove `fsck.mode=force fsck.repair=yes` if using btrfs
         -   add `rootflags=subvol=@` if using btrfs
         -   `nvidia_drm.modeset=1` needed for wayland and such
         -   could remove `loglevel=3` and just set `quiet splash`
