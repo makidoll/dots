@@ -86,6 +86,18 @@
     -   also add `#sidebar-header { display: none; }`
     -   install [`minimalist-dracula-darker.xpi`](https://github.com/makidoll/dots/blob/main/other/minimalist-dracula-darker.xpi) theme (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
 
+-   set cpu frequency policy to performance
+
+    -   install cpupower `sudo pacman -S cpupower`
+    -   check available governors and current policy `cpupower frequency-info`
+    -   modify `/etc/default/cpupower` and set governer to `performance`
+    -   enable and start systemd service `sudo systemctl enable --now cpupower`
+    -   check if policy was updated `cpupower frequency-info`
+
+    find more info here https://wiki.archlinux.org/title/CPU_frequency_scaling#cpupower
+
+-   TODO: linux-tkg and nvidia-all
+
 -   use [quickemu](https://aur.archlinux.org/packages/quickemu) for easy windows or mac vm
 
     > im currently doing a gpu passthrough which is quite a bit more complicated.<br>
