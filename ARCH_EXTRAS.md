@@ -67,7 +67,7 @@
         Description=Yeti Nano Fixed Volume
 
         [Service]
-        ExecStart=bash -c 'while sleep 0.1; do wpctl set-volume $(wpctl status | grep -Eio "[0-9]+. Yeti Nano Analog Stereo" | grep -Eio "[0-9]+") 60%; done'
+        ExecStart=bash -c 'while sleep 0.1; do wpctl set-volume $(wpctl status | grep -Eio "[0-9]+. Yeti Nano Analog Stereo" | grep -Eio "[0-9]+") 55%; done'
         Type=simple
         # treat as a lowest priority program
         Nice=19
