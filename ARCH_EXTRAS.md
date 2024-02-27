@@ -113,6 +113,10 @@
         -   in admin run `systemwidedeploy.cmd` and `1. Core desktop OpenGL drivers`
         -   test with [GPU Caps Viewer](https://www.geeks3d.com/dlz/). should be higher than gl 1.0
 
+-   disable `*-debug` packages
+    -   edit `/etc/makepkg.conf`
+    -   modify `OPTIONS=(... debug)` to `OPTIONS=(... !debug)`
+
 ## Not really using these
 
 -   when using grub2win (try to avoid it i guess)
