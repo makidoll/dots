@@ -104,6 +104,10 @@ mainwin.geometry.h 1192
 mainwin.geometry.w 1985
 mainwin.geometry.x 243
 mainwin.geometry.y 71
+medialib.deadbeef.enabled 1
+mpris.disable_shuffle_repeat 0
+mpris.trace 0
+mpris2.previous_action 1
 network.proxy.port 8080
 output_plugin pipewire
 pipewire.properties 
@@ -115,15 +119,16 @@ playback.volume.normalized 0.2498625
 playlist.cursor.0 14
 playlist.scroll.0 -14
 playlist.scroll.cursorfollowplayback 1
+playlist.stop_after_current 0
 playlist.tab.00000 Default
 prefwin.geometry.h 920
 prefwin.geometry.w 1146
 prefwin.geometry.x 596
 prefwin.geometry.y 368
 resume.paused 0
-resume.playlist 0
-resume.position 916.77587
-resume.track 14
+resume.playlist -1
+resume.position -1.000000
+resume.track -1
 spectrogram.color.gradient_00 65535 0 0
 spectrogram.color.gradient_01 65535 32896 0
 spectrogram.color.gradient_02 65535 65535 0
