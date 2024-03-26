@@ -27,13 +27,16 @@
         -   [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/) adds tray icons back
         -   [Freon](https://extensions.gnome.org/extension/841/freon/) shows cpu temp and more
         -   [GameMode](https://extensions.gnome.org/extension/1852/gamemode/) shows indicator when `gamemoderun`
+        -   [Arch Update Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/) shows package updates
+
+            -   TODO: add how to show yay packages too
 
         -   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/) gives back space
         -   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) is just nice
 
         recommended to install above using yay (cause devs arent updating their extensions on gnome.org)
 
-        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-freon-git gnome-shell-extension-gamemode-git gnome-shell-extension-rounded-window-corners-git gnome-shell-extension-hidetopbar-git`
+        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-freon-git gnome-shell-extension-gamemode-git gnome-shell-extension-rounded-window-corners-git gnome-shell-extension-hidetopbar-git`
 
         honorable but not using
 
