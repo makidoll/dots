@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [[ $1 == "kill" ]]; then
+	killall virtiofsd
 	kill -TERM $(cat ~/quickemu/windows-11/windows-11.pid)
 	exit 0
 fi
@@ -22,8 +23,9 @@ extra_args=(
 )
 
 quickemu_vm=(
+	"#!/usr/bin/quickemu --vm"
 	guest_os="windows"
-	# iso="Win11_23H2_English_x64v2.iso"
+	# iso="/home/maki/quickemu/files/Win11_23H2_English_x64v2.iso"
 	disk_img="/home/maki/quickemu/windows-11/disk.qcow2"
 	# fixed_iso="/home/maki/quickemu/windows-11/virtio-win.iso"
 	tpm="on"
@@ -59,12 +61,15 @@ fi
 
 # start virtiofs
 
+killall -q virtiofsd
+
 sudo mkdir -p /tmp/maki
 sudo chown -R maki:maki /tmp/maki
 
-nohup /usr/lib/virtiofsd --socket-path=/tmp/maki/vfsd-win11.sock \
-	--shared-dir /home/maki \
-	1>/dev/null 2>/dev/null & disown
+setsid /usr/lib/virtiofsd --socket-path=/tmp/maki/vfsd-win11.sock \
+	--shared-dir /home/maki &
+
+sleep 1 # vm might start too quickly. maybe
 
 # gpu passthrough
 sudo chown -R maki:maki /dev/vfio
@@ -75,11 +80,14 @@ sudo chmod 777 /dev/shm/looking-glass
 
 # start emulator
 
+printf "%s\n" "${quickemu_vm[@]}" > /home/maki/quickemu/windows-11.conf
+
 /usr/bin/quickemu \
 	--display none \
 	--extra_args "$(printf "%s " ${extra_args[@]})" \
-	--vm <(echo ${quickemu_vm[@]}) 
+	--vm /home/maki/quickemu/windows-11.conf
+	# --vm <(echo ${quickemu_vm[@]})
 
-nohup looking-glass-client \
+setsid nohup looking-glass-client \
 	-p 5930 -m KEY_RIGHTSHIFT -K 144 -S -F \
-	1>/dev/null 2>/dev/null & disown
+	2>/dev/null 1>/dev/null &
