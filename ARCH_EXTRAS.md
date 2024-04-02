@@ -29,7 +29,28 @@
         -   [GameMode](https://extensions.gnome.org/extension/1852/gamemode/) shows indicator when `gamemoderun`
         -   [Arch Update Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/) shows package updates
 
-            -   TODO: add how to show yay packages too
+            -   In advanced settings, change command to check for package updates:<br>
+                `/bin/sh -c "/usr/bin/checkupdates && /usr/bin/yay -Qua"`
+            -   Command to update packages:<br>
+                `gnome-terminal -- /bin/sh -c "~/update-all.sh; echo Done - Press enter to exit; read _"`
+            -   In home folder, write `update-all.sh`:<br>
+
+                ```bash
+                #!/bin/bash
+
+                export MAKEFLAGS="-j32"
+
+                ignore=()
+
+                ignore_args=""
+                for package in "${ignore[@]}"
+                do
+                    ignore_args="$ignore_args --ignore $package"
+                done
+                # echo $ignore_args
+
+                yay -Syu --noconfirm $ignore_args
+                ```
 
         -   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/) gives back space
         -   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) is just nice
