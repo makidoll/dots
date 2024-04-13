@@ -84,14 +84,27 @@
 
 -   force microphone to fixed volume using wireplumber ctl and systemd
 
-    -   `vim ~/.config/systemd/user/yeti-nano-fixed-volume.service`
+    -   `vim ~/fix-mic-volume.sh`
+
+        ```bash
+        #!/bin/bash
+
+        while sleep 0.5; do
+            # wpctl status | grep -Eio "[0-9]+. Yeti Nano Analog Stereo" | grep -Eio "[0-9]+"
+            MIC_ID=$(pw-dump | jq '.[] | select(.info.props."media.class"=="Audio/Source") | .info.props | select(."node.nick"=="Yeti Nano") | ."object.id"')
+            # echo $MIC_ID
+            wpctl set-volume $MIC_ID 60%
+        done
+        ```
+
+    -   `vim ~/.config/systemd/user/fix-mic-volume.service`
 
         ```
         [Unit]
-        Description=Yeti Nano Fixed Volume
+        Description=Fix Mic Volume
 
         [Service]
-        ExecStart=bash -c 'while sleep 0.1; do wpctl set-volume $(wpctl status | grep -Eio "[0-9]+. Yeti Nano Analog Stereo" | grep -Eio "[0-9]+") 60%; done'
+        ExecStart=/home/maki/fix-mic-volume.sh
         Type=simple
         # treat as a lowest priority program
         Nice=19
@@ -100,8 +113,8 @@
         WantedBy=default.target
         ```
 
-    -   `systemctl enable --now --user yeti-nano-fixed-volume.service`
-    -   `systemctl status --user yeti-nano-fixed-volume.service` make sure its not erroring
+    -   `systemctl enable --now --user fix-mic-volume.service`
+    -   `systemctl status --user fix-mic-volume.service` make sure its not erroring
 
 -   firefox with vertical tabs
 
