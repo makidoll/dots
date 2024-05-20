@@ -30,9 +30,9 @@ filebrowser.bgcolor_selected #000000
 filebrowser.coverart_files cover.png;cover.jpg;folder.png;folder.jpg;front.png;front.jpg
 filebrowser.coverart_scale 1
 filebrowser.coverart_size 24
-filebrowser.defaultpath /home/maki/Files/Music
+filebrowser.defaultpath /home/maki/Music
 filebrowser.enabled 1
-filebrowser.expanded_rows file:///home/maki/Files/Music/Bandcamp
+filebrowser.expanded_rows file:///home/maki/Music/Bandcamp file:///home/maki/Music/Ponies
 filebrowser.extra_bookmarks 
 filebrowser.fgcolor #000000
 filebrowser.fgcolor_selected #000000
