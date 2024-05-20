@@ -93,7 +93,7 @@
             # wpctl status | grep -Eio "[0-9]+. Yeti Nano Analog Stereo" | grep -Eio "[0-9]+"
             MIC_ID=$(pw-dump | jq '.[] | select(.info.props."media.class"=="Audio/Source") | .info.props | select(."node.nick"=="Yeti Nano") | ."object.id"')
             # echo $MIC_ID
-            wpctl set-volume $MIC_ID 60%
+            wpctl set-volume $MIC_ID 75%
         done
         ```
 
