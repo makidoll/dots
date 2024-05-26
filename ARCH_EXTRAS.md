@@ -57,7 +57,7 @@
 
         recommended to install above using yay (cause devs arent updating their extensions on gnome.org)
 
-        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-freon-git gnome-shell-extension-gamemode-git gnome-shell-extension-rounded-window-corners-git gnome-shell-extension-hidetopbar-git`
+        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-freon gnome-shell-extension-gamemode-git gnome-shell-extension-hidetopbar-git gnome-shell-extension-rounded-window-corners-git`
 
         honorable but not using
 
