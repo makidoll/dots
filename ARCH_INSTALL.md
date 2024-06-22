@@ -1,12 +1,11 @@
 # Maki's Arch Install Guide
 
-> ⚠️ This needs an overhaul
-
-This could get outdated any time, but _i use arch btw_ so I'm sure it'll get updated
+> ⚠️ This is never really finished and could get outdated,<br>
+> however _"i use arch btw"_ so I'm sure it'll get updated
 
 ## 1. Core installation
 
-this guide will only work with uefi
+this guide will only work with uefi. we'll set up partitions first
 
 -   create a 512 MB parition, type: EFI system **(don't if you already have one)**<br>
     create second parition for the rest<br>
@@ -16,46 +15,48 @@ this guide will only work with uefi
     `mkfs.fat -F32 /dev/nvme0n1p1`<br>
     `fatlabel /dev/nvme0n1p1 MAKI_EFI`
 
+<!--
 -   <details>
-       <summary>ext4 (simple and stable)</summary>
+<summary>ext4 (simple and stable)</summary>
+-->
 
-    -   mkfs ext4 on the other<br>
-        `mkfs.ext4 /dev/nvme0n1p2`<br>
-        `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
+-   mkfs ext4 on the other<br>
+    `mkfs.ext4 /dev/nvme0n1p2`<br>
+    `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
 
-    -   verify labels with<br>
-        `lsblk -o name,label`
+-   verify labels with<br>
+    `lsblk -o name,label`
 
-    -   mount the root partition<br>
-        `mount /dev/disk/by-label/MAKI_ARCH /mnt`
+-   mount the root partition<br>
+    `mount /dev/disk/by-label/MAKI_ARCH /mnt`
 
-    </details>
+<!-- </details> -->
 
-    <details>
-    <summary>btrfs (more complicated, personally unrecommended)</summary>
+<!-- <details>
+<summary>btrfs (more complicated, personally unrecommended)</summary>
 
-    -   mkfs btrfs on the other<br>
-        `mkfs.btrfs /dev/nvme0n1p2`<br>
-        `btrfs filesystem label /dev/nvme0n1p2 MAKI_ARCH`<br>
+-   mkfs btrfs on the other<br>
+    `mkfs.btrfs /dev/nvme0n1p2`<br>
+    `btrfs filesystem label /dev/nvme0n1p2 MAKI_ARCH`<br>
 
-    -   verify labels with<br>
-        `lsblk -o name,label`
+-   verify labels with<br>
+    `lsblk -o name,label`
 
-    -   mount the partition<br>
-        `mount /dev/disk/by-label/MAKI_ARCH /mnt`
+-   mount the partition<br>
+    `mount /dev/disk/by-label/MAKI_ARCH /mnt`
 
-    -   create two subvolumes<br>
-        `btrfs sub create /mnt/@`<br>
-        `btrfs sub create /mnt/@home`
+-   create two subvolumes<br>
+    `btrfs sub create /mnt/@`<br>
+    `btrfs sub create /mnt/@home`
 
-    -   unmount the partition<br>
-        `umount /mnt`
+-   unmount the partition<br>
+    `umount /mnt`
 
-    -   mount new subvolumes<br>
-        `mount -o subvol=@ /dev/disk/by-label/MAKI_ARCH /mnt`<br>
-        `mount -o subvol=@home /dev/disk/by-label/MAKI_ARCH /mnt/home`
+-   mount new subvolumes<br>
+    `mount -o subvol=@ /dev/disk/by-label/MAKI_ARCH /mnt`<br>
+    `mount -o subvol=@home /dev/disk/by-label/MAKI_ARCH /mnt/home`
 
-    </details>
+</details> -->
 
 -   if you **just made** an EFI partition
 
@@ -69,14 +70,19 @@ this guide will only work with uefi
         `mkdir /mnt/efi`<br>
         `mount /dev/nvme0n1p1 /mnt/efi`
 
+-   create a swap file [(see why)](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)<br>
+    `mkswap -U clear --size 4G --file /mnt/swapfile`
+
+-   finally generate fstab (TODO: check if swapfile is actually here)<br>
+    `genfstab -L /mnt > /mnt/etc/fstab`
+
+now we've setup partitions, we'll pacstrap install arch linux and install a boot loader
+
 -   (optional) set geographicly close mirror top<br>
     `nano /etc/pacman.d/mirrorlist`
 
 -   install the base system<br>
     `pacstrap /mnt base base-devel linux linux-firmware linux-headers dhcpcd nano`
-
--   generate fstab<br>
-    `genfstab -U /mnt > /mnt/etc/fstab`
 
 -   chroot into the new system<br>
     `arch-chroot /mnt`
@@ -87,10 +93,10 @@ this guide will only work with uefi
 -   install amd-ucode or intel-ucode depending on CPU<br>
     `pacman -S amd-ucode`
 
--   pick a bootloader, both work with Windows. find more here: https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
+-   pick a bootloader, both work with windows. find more here: https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
 
     <details>
-    <summary>systemd-boot (finds windows automatically)</summary>
+    <summary>systemd-boot (simple to use, finds windows automatically)</summary>
 
     -   install systemd bootloader (read --help)<br>
         `bootctl install`
@@ -124,7 +130,7 @@ this guide will only work with uefi
     </details>
 
     <details>
-    <summary>grub (with os-prober)</summary>
+    <summary>grub (old and bloated, finds windows with os-prober)</summary>
 
     -   _i havent really tried grub with btrfs before. just remove `fsck.mode=force` cause its noop. the rest is up to you_
 
@@ -148,7 +154,7 @@ this guide will only work with uefi
 
     </details>
 
--   remove the bootable media, restart PC<br>
+-   remove the bootable media and restart<br>
     `exit`<br>
     `reboot`
 
@@ -190,22 +196,8 @@ this guide will only work with uefi
     `hwclock --systohc --utc`<br>
     `timedatectl set-ntp true`
 
--   setup a swap file if RAM < 2 GB<br>
-    `dd if=/dev/zero of=/swapfile count=2048 bs=1MiB`<br>
-    `chmod 600 /swapfile`<br>
-    `mkswap /swapfile`<br>
-    `swapon /swapfile`<br>
-    `nano /etc/fstab`
-
-    ```
-    /swapfile none swap defaults 0 0
-    ```
-
-    `nano /etc/sysctl.d/99-sysctl.conf`
-
-    ```
-    vm.swappiness=10
-    ```
+-   enable systemd-oomd if we ever out-of-memory<br>
+    `systemctl enable --now systemd-oomd`
 
 -   uncomment color and parallel downloads, and enable x86 repo in pacman.conf<br>
     `nano /etc/pacman.conf`
@@ -240,6 +232,8 @@ this guide will only work with uefi
 
     see more here: https://wiki.archlinux.org/title/Xorg#Driver_installation
 
+    would recommend for nvidia: https://github.com/Frogging-Family/nvidia-all
+
     | Brand  | Type        | Packages                                                         |
     | ------ | ----------- | ---------------------------------------------------------------- |
     | NVIDIA | Proprietary | `nvidia-dkms nvidia-utils lib32-nvidia-utils`                    |
@@ -249,6 +243,7 @@ this guide will only work with uefi
     `pacman -S xorg-server xorg-xinit`
 
 -   install desktop environment<br>
+    (would recommend only installing what you need)<br>
     `pacman -S gnome gnome-extra gnome-themes-extra`
 
 -   may want to stop your dhcp server and install networkmanager for gnome<br>
