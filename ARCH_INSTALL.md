@@ -71,9 +71,11 @@ this guide will only work with uefi. we'll set up partitions first
         `mount /dev/nvme0n1p1 /mnt/efi`
 
 -   create a swap file [(see why)](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)<br>
-    `mkswap -U clear --size 4G --file /mnt/swapfile`
+    `mkswap -U clear --size 4G --file /mnt/swapfile`<br>
+    `swapon /mnt/swapfile`
 
--   finally generate fstab (TODO: check if swapfile is actually here)<br>
+-   finally generate fstab<br>
+    `mkdir -p /mnt/etc`<br>
     `genfstab -L /mnt > /mnt/etc/fstab`
 
 now we've setup partitions, we'll pacstrap install arch linux and install a boot loader
@@ -257,3 +259,9 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
 
 -   reboot<br>
     `reboot`
+
+## TODO
+
+-   systemd-resolved
+-   linux-tkg maybe
+-   laptop stuff
