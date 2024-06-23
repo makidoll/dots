@@ -82,20 +82,14 @@
     -   `yay -S deadbeef-git deadbeef-mpris2-plugin deadbeef-plugin-fb-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-discord-git`
     -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
 
--   force microphone to fixed volume using wireplumber ctl and systemd
+-   force microphone to fixed volume using wireplumber and systemd
 
-    -   `vim ~/fix-mic-volume.sh`
-
-        ```bash
-        #!/bin/bash
-
-        while sleep 0.5; do
-            # wpctl status | grep -Eio "[0-9]+. Yeti Nano Analog Stereo" | grep -Eio "[0-9]+"
-            MIC_ID=$(pw-dump | jq '.[] | select(.info.props."media.class"=="Audio/Source") | .info.props | select(."node.nick"=="Yeti Nano") | ."object.id"')
-            # echo $MIC_ID
-            wpctl set-volume $MIC_ID 75%
-        done
+    -   ```bash
+        wget https://raw.githubusercontent.com/makidoll/dots/main/other/fix-mic-volume.lua
+        chmod +x fix-mic-volume.lua
         ```
+
+    -   update variables at the top of the lua file
 
     -   `vim ~/.config/systemd/user/fix-mic-volume.service`
 
@@ -104,7 +98,7 @@
         Description=Fix Mic Volume
 
         [Service]
-        ExecStart=/home/maki/fix-mic-volume.sh
+        ExecStart=/home/maki/fix-mic-volume.lua
         Type=simple
         # treat as a lowest priority program
         Nice=19
