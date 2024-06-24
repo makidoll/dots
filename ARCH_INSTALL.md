@@ -9,11 +9,11 @@ this guide will only work with uefi. we'll set up partitions first
 
 -   create a 512 MB parition, type: EFI system **(don't if you already have one)**<br>
     create second parition for the rest<br>
-    `cfdisk /dev/nvme0n1`
+    `cfdisk /dev/sda`
 
 -   mkfs FAT32 on first, with label **(only if you made one)**<br>
-    `mkfs.fat -F32 /dev/nvme0n1p1`<br>
-    `fatlabel /dev/nvme0n1p1 MAKI_EFI`
+    `mkfs.fat -F32 /dev/sda1`<br>
+    `fatlabel /dev/sda1 MAKI_EFI`
 
 <!--
 -   <details>
@@ -26,8 +26,8 @@ this guide will only work with uefi. we'll set up partitions first
     <summary>ext4 (plain)</summary>
 
     -   mkfs ext4 on the other, with label<br>
-        `mkfs.ext4 /dev/nvme0n1p2`<br>
-        `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
+        `mkfs.ext4 /dev/sda2`<br>
+        `e2label /dev/sda2 MAKI_ARCH`<br>
 
     </details>
 
@@ -35,11 +35,11 @@ this guide will only work with uefi. we'll set up partitions first
     <summary>ext4 (with encryption)</summary>
 
     -   prepare luks on the other, with label<br>
-        `cryptsetup luksFormat device /dev/nvme0n1p2`<br>
-        `cryptsetup config /dev/nvme0n1p2 --label MAKI_ARCH_CRYPT`
+        `cryptsetup luksFormat device /dev/sda2`<br>
+        `cryptsetup config /dev/sda2 --label MAKI_ARCH_CRYPT`
 
     -   mount luks partition<br>
-        `cryptsetup open /dev/nvme0n1p2 root`
+        `cryptsetup open /dev/sda2 root`
 
     -   mkfs ext4, also with label<br>
         `mkfs.ext4 /dev/mapper/root`<br>
@@ -59,8 +59,8 @@ this guide will only work with uefi. we'll set up partitions first
 <summary>btrfs (more complicated, personally unrecommended)</summary>
 
 -   mkfs btrfs on the other<br>
-    `mkfs.btrfs /dev/nvme0n1p2`<br>
-    `btrfs filesystem label /dev/nvme0n1p2 MAKI_ARCH`<br>
+    `mkfs.btrfs /dev/sda2`<br>
+    `btrfs filesystem label /dev/sda2 MAKI_ARCH`<br>
 
 -   verify labels with<br>
     `lsblk -o name,label`
@@ -91,7 +91,7 @@ this guide will only work with uefi. we'll set up partitions first
 
     -   create seperate directory and mount<br>
         `mkdir /mnt/efi`<br>
-        `mount /dev/nvme0n1p1 /mnt/efi`
+        `mount /dev/sda1 /mnt/efi`
 
 -   create a swap file [(see why)](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)<br>
     `mkswap -U clear --size 4G --file /mnt/swapfile`<br>
