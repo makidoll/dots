@@ -259,9 +259,3 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
 
 -   reboot<br>
     `reboot`
-
-## TODO
-
--   systemd-resolved
--   linux-tkg maybe
--   laptop stuff
