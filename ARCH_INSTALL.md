@@ -263,11 +263,12 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
     `ip a`<br>
     `systemctl start dhcpcd@enp60s0`<br>
 
--   install the default video driver<br>
-    `pacman -S xf86-video-vesa`
+-   install wireplumber for pipewire
+    `pacman -S wireplumber pipewire-pulse`<br>
+    `systemctl enable --user --now wireplumber pipewire pipewire-{pulse,jack,alsa}`
 
--   install OpenGL support<br>
-    `pacman -S mesa`
+-   install default video drivers and OpenGL support<br>
+    `pacman -S xf86-video-vesa mesa`
 
 -   install video driver specific for your hardware
 
@@ -280,8 +281,8 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
     | NVIDIA | Proprietary | `nvidia-dkms nvidia-utils lib32-nvidia-utils`                    |
     | AMD    | Open Source | `xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon` |
 
--   install Xorg packages<br>
-    `pacman -S xorg-server xorg-xinit`
+-   install xorg server if you dont want to use wayland<br>
+    `pacman -S xorg-server`
 
 -   install desktop environment<br>
     (would recommend only installing what you need)<br>
@@ -290,7 +291,7 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
 -   may want to stop your dhcp server and install networkmanager for gnome<br>
     `pacman -S networkmanager`<br>
     `systemctl stop dhcpcd@enp60s0`<br>
-    `systemctl enable --now networkmanager`<br>
+    `systemctl enable --now NetworkManager`<br>
 
 -   install and enable desktop manager<br>
     `pacman -S gdm`<br>
