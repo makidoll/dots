@@ -234,8 +234,11 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
     `hwclock --systohc --utc`<br>
     `timedatectl set-ntp true`
 
--   enable systemd-oomd if we ever out-of-memory<br>
-    `systemctl enable --now systemd-oomd`
+-   enable systemd-oomd for when we run out-of-memory<br>
+    `systemctl enable --now systemd-oomd.services`
+
+-   enable fstrim.timer if you're using an nvme<br>
+    `systemctl enable --now fstrim.timer`
 
 -   uncomment color and parallel downloads, and enable x86 repo in pacman.conf<br>
     `nano /etc/pacman.conf`

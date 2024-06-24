@@ -1,5 +1,4 @@
 -   add some server config files
--   add fstrim.timer to install file
 -   systemd-resolved
 -   linux-tkg
 -   laptop stuff
