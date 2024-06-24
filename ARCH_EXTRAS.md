@@ -53,7 +53,7 @@
 
         recommended to install below using yay (cause devs arent updating their extensions on gnome.org)
 
-        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-freon gnome-shell-extension-gamemode-git gnome-shell-extension-hidetopbar-git gnome-shell-extension-rounded-window-corners-git`
+        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-freon gnome-shell-extension-gamemode-git gnome-shell-extension-hidetopbar-git gnome-shell-extension-rounded-window-corners-git gnome-shell-extension-arch-update`
 
         -   [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/) adds tray icons back
         -   [Freon](https://extensions.gnome.org/extension/841/freon/) shows cpu temp and more
