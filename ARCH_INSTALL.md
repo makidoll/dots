@@ -299,3 +299,5 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
 
 -   reboot<br>
     `reboot`
+
+would recommend checking out [ARCH_EXTRAS.md](ARCH_EXTRAS.md) next
