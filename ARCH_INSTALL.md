@@ -11,7 +11,7 @@ this guide will only work with uefi. we'll set up partitions first
     create second parition for the rest<br>
     `cfdisk /dev/nvme0n1`
 
--   mkfs FAT32 on 512 MB one **(only if you made one)**<br>
+-   mkfs FAT32 on first, with label **(only if you made one)**<br>
     `mkfs.fat -F32 /dev/nvme0n1p1`<br>
     `fatlabel /dev/nvme0n1p1 MAKI_EFI`
 
@@ -20,9 +20,32 @@ this guide will only work with uefi. we'll set up partitions first
 <summary>ext4 (simple and stable)</summary>
 -->
 
--   mkfs ext4 on the other<br>
-    `mkfs.ext4 /dev/nvme0n1p2`<br>
-    `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
+-   choose which root fs you want to use
+
+    <details>
+    <summary>ext4 (plain)</summary>
+
+    -   mkfs ext4 on the other, with label<br>
+        `mkfs.ext4 /dev/nvme0n1p2`<br>
+        `e2label /dev/nvme0n1p2 MAKI_ARCH`<br>
+
+    </details>
+
+    <details>
+    <summary>ext4 (with encryption)</summary>
+
+    -   prepare luks on the other, with label<br>
+        `cryptsetup luksFormat device /dev/nvme0n1p2`<br>
+        `cryptsetup config /dev/nvme0n1p2 --label MAKI_ARCH_CRYPT`
+
+    -   mount luks partition<br>
+        `cryptsetup open /dev/nvme0n1p2 root`
+
+    -   mkfs ext4, also with label<br>
+        `mkfs.ext4 /dev/mapper/root`<br>
+        `e2label /dev/mapper/root MAKI_ARCH`<br>
+
+    </details>
 
 -   verify labels with<br>
     `lsblk -o name,label`
@@ -72,7 +95,7 @@ this guide will only work with uefi. we'll set up partitions first
 
 -   create a swap file [(see why)](https://chrisdown.name/2018/01/02/in-defence-of-swap.html)<br>
     `mkswap -U clear --size 4G --file /mnt/swapfile`<br>
-    `swapon /mnt/swapfile`
+    `swapon /mnt/swapfile`<br>
 
 -   finally generate fstab<br>
     `mkdir -p /mnt/etc`<br>
@@ -111,15 +134,22 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
         linux /vmlinuz-linux
         initrd /amd-ucode.img
         initrd /initramfs-linux.img
-        options root=LABEL=MAKI_ARCH fsck.mode=force fsck.repair=yes
+        options root=LABEL=MAKI_ARCH
+        options fsck.mode=force fsck.repair=yes
         options rw loglevel=3 nvidia_drm.modeset=1
         ```
 
-        -   remove `fsck.mode=force fsck.repair=yes` if using btrfs
-        -   add `rootflags=subvol=@` if using btrfs
-        -   `nvidia_drm.modeset=1` needed for wayland and such
+        -   if using encryption, update first options line to<br>
+            `options cryptdevice=LABEL=MAKI_ARCH_CRYPT:root root=LABEL=MAKI_ARCH`
+
+        -   `nvidia_drm.modeset=1` needed for wayland on nvidia
         -   could remove `loglevel=3` and just set `quiet splash`
         -   could replace `root=LABEL=MAKI_ARCH` with `root=UUID=<uuid>`
+
+        <!--
+        -   remove `fsck.mode=force fsck.repair=yes` if using btrfs
+        -   add `rootflags=subvol=@` if using btrfs
+        -->
 
     -   set the default entry<br>
         `nano /boot/loader/loader.conf`
@@ -134,7 +164,7 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
     <details>
     <summary>grub (old and bloated, finds windows with os-prober)</summary>
 
-    -   _i havent really tried grub with btrfs before. just remove `fsck.mode=force` cause its noop. the rest is up to you_
+    <!-- -   _i havent really tried grub with btrfs before. just remove `fsck.mode=force` cause its noop. the rest is up to you_ -->
 
     -   install a packages<br>
         `pacman -S grub efibootmgr os-prober`
@@ -155,6 +185,12 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
         `grub-mkconfig -o /boot/grub/grub.cfg` (maybe this needs to be /efi/grub/grub.cfg?)
 
     </details>
+
+-   if you're encrypting<br>
+    `nano /etc/mkinitcpio.conf` add `encrypt` to the end of<br>
+    `HOOKS=(... encrypt)` (must be after keymap)<br>
+    then run<br>
+    `mkinitcpio -P`
 
 -   remove the bootable media and restart<br>
     `exit`<br>
