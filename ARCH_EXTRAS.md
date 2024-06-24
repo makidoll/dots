@@ -14,7 +14,29 @@
 
 -   gnome recommendations
 
-    -   assign **Switch Windows** keyboard shortcut to alt+tab
+    -   use fixed number of workspaces to 8 in **Settings > Multitasking > Workspaces**
+
+    -   update keybinds in **Settings > Keyboard > View and Customize Shortcuts**
+
+        -   under `Naviation`
+
+            -   `Move window one workspace to the left` to **Shift + Super + Q**
+            -   `Move window one workspace to the right` to **Shift + Super + E**
+            -   `Switch applications` to **Disabled**
+            -   `Switch to workspace on the left` to **Super + Q**
+            -   `Switch to workspace on the right` to **Super + E**
+            -   ❗ `Switch windows` to **Alt + Tab**
+
+        -   under `System`
+
+            -   `Show all apps` to **Disabled**
+            -   `Show the run command prompty` to **Alt + F12**
+
+        -   under `Custom`
+            -   `Open terminal` with `gnome-terminal` to **Alt + Return**
+            -   `Playerctl next` with `playerctl next` to **Audio next**
+            -   `Playerctl play/pause` with `playerctl play-pause` to **Audio play**
+            -   `Playerctl previous` with `playerctl previous` to **Audio previous**
 
     -   using tweaks, disable **Middle Click Paste** in **Keyboard & Mouse**
 
@@ -22,11 +44,22 @@
 
         `xdg-mime default org.gnome.Nautilus.desktop inode/directory`
 
+    -   themes
+
+        -   please dont theme gnome
+        -   but do use [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+
     -   extensions
+
+        recommended to install below using yay (cause devs arent updating their extensions on gnome.org)
+
+        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-freon gnome-shell-extension-gamemode-git gnome-shell-extension-hidetopbar-git gnome-shell-extension-rounded-window-corners-git`
 
         -   [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/) adds tray icons back
         -   [Freon](https://extensions.gnome.org/extension/841/freon/) shows cpu temp and more
         -   [GameMode](https://extensions.gnome.org/extension/1852/gamemode/) shows indicator when `gamemoderun`
+        -   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/) gives back space
+        -   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) is just nice
         -   [Arch Update Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/) shows package updates
 
             -   In advanced settings, change command to check for package updates:<br>
@@ -38,7 +71,7 @@
                 ```bash
                 #!/bin/bash
 
-                export MAKEFLAGS="-j32"
+                export MAKEFLAGS="-j32" # please use `nproc --all`
 
                 ignore=()
 
@@ -47,17 +80,15 @@
                 do
                     ignore_args="$ignore_args --ignore $package"
                 done
+
                 # echo $ignore_args
 
-                yay -Syu --noconfirm $ignore_args
+                if [[ "$1" == "--pacman" ]]; then
+                    sudo pacman -Syu $ignore_args
+                else
+                    yay -Syu $ignore_args
+                fi
                 ```
-
-        -   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/) gives back space
-        -   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) is just nice
-
-        recommended to install above using yay (cause devs arent updating their extensions on gnome.org)
-
-        `yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-freon gnome-shell-extension-gamemode-git gnome-shell-extension-hidetopbar-git gnome-shell-extension-rounded-window-corners-git`
 
         honorable but not using
 
@@ -66,16 +97,12 @@
         -   [Vertical overview](https://extensions.gnome.org/extension/4144/vertical-overview/)
         -   [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/) brings ready windows into focus
 
--   fix file permissions when copying from ntfs
+-   firefox with vertical tabs
 
-    ```bash
-    find Files/* -type d -exec chmod 755 {} +
-    find Files/* -type f -exec chmod 644 {} +
-    ```
-
--   themes
-
-    -   [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme#kde-colorscheme)
+    -   install [sideberry](https://addons.mozilla.org/en-US/firefox/addon/sidebery/) extension
+    -   css hack [to hide native tabs](<https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css)#completely-hide-native-tabs-strip>)
+    -   also add `#sidebar-header { display: none; }`
+    -   install [`minimalist-dracula-darker.xpi`](https://github.com/makidoll/dots/blob/main/other/minimalist-dracula-darker.xpi) theme (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
 
 -   setup deadbeef
 
@@ -110,13 +137,6 @@
     -   `systemctl enable --now --user fix-mic-volume.service`
     -   `systemctl status --user fix-mic-volume.service` make sure its not erroring
 
--   firefox with vertical tabs
-
-    -   install [sideberry](https://addons.mozilla.org/en-US/firefox/addon/sidebery/) extension
-    -   css hack [to hide native tabs](<https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css)#completely-hide-native-tabs-strip>)
-    -   also add `#sidebar-header { display: none; }`
-    -   install [`minimalist-dracula-darker.xpi`](https://github.com/makidoll/dots/blob/main/other/minimalist-dracula-darker.xpi) theme (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
-
 -   set cpu frequency policy to performance
 
     -   install cpupower `sudo pacman -S cpupower`
@@ -127,7 +147,19 @@
 
     find more info here https://wiki.archlinux.org/title/CPU_frequency_scaling#cpupower
 
--   TODO: linux-tkg and nvidia-all
+-   TODO: linux-tkg
+
+-   disable `*-debug` packages
+
+    -   edit `/etc/makepkg.conf`
+    -   modify `OPTIONS=(... debug)` to `OPTIONS=(... !debug)`
+
+-   fix file permissions when copying from ntfs
+
+    ```bash
+    find Files/* -type d -exec chmod 755 {} +
+    find Files/* -type f -exec chmod 644 {} +
+    ```
 
 -   use [quickemu](https://aur.archlinux.org/packages/quickemu) for easy windows or mac vm
 
@@ -143,10 +175,6 @@
     -   install software gl+dx support https://github.com/pal1000/mesa-dist-win/releases
         -   in admin run `systemwidedeploy.cmd` and `1. Core desktop OpenGL drivers`
         -   test with [GPU Caps Viewer](https://www.geeks3d.com/dlz/). should be higher than gl 1.0
-
--   disable `*-debug` packages
-    -   edit `/etc/makepkg.conf`
-    -   modify `OPTIONS=(... debug)` to `OPTIONS=(... !debug)`
 
 ## Not really using these
 
