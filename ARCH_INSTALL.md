@@ -35,11 +35,11 @@ this guide will only work with uefi. we'll set up partitions first
     <summary>ext4 (with encryption)</summary>
 
     -   prepare luks on the other, with label<br>
-        `cryptsetup luksFormat device /dev/sda2`<br>
+        `cryptsetup luksFormat /dev/sda2`<br>
         `cryptsetup config /dev/sda2 --label MAKI_ARCH_CRYPT`
 
     -   mount luks partition<br>
-        `cryptsetup open /dev/sda2 root`
+        `cryptsetup open /dev/disk/by-label/MAKI_ARCH_CRYPT root`
 
     -   mkfs ext4, also with label<br>
         `mkfs.ext4 /dev/mapper/root`<br>
