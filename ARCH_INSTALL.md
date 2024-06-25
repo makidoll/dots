@@ -235,7 +235,7 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
     `timedatectl set-ntp true`
 
 -   enable systemd-oomd for when we run out-of-memory<br>
-    `systemctl enable --now systemd-oomd.services`
+    `systemctl enable --now systemd-oomd.service`
 
 -   enable fstrim.timer if you're using an nvme<br>
     `systemctl enable --now fstrim.timer`
