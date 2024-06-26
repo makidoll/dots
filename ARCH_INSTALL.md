@@ -264,8 +264,8 @@ now we've setup partitions, we'll pacstrap install arch linux and install a boot
     `systemctl start dhcpcd@enp60s0`<br>
 
 -   install wireplumber for pipewire
-    `pacman -S wireplumber pipewire-pulse`<br>
-    `systemctl enable --user --now wireplumber pipewire pipewire-{pulse,jack,alsa}`
+    `pacman -S wireplumber pipewire-{pulse,jack,alsa}`<br>
+    `systemctl enable --user --now wireplumber pipewire pipewire-pulse`
 
 -   install default video drivers and OpenGL support<br>
     `pacman -S xf86-video-vesa mesa`
