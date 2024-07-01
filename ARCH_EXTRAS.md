@@ -40,6 +40,13 @@
 
     -   using tweaks, disable **Middle Click Paste** in **Keyboard & Mouse**
 
+    -   if using 800 dpi for mouse, half sensitivity and disable mouse acceleration<br>
+        `gsettings set org.gnome.desktop.peripherals.mouse speed -0.5`<br>
+        `gsettings set org.gnome.desktop.peripherals.mouse accel-profile flat`
+
+    -   resize windows using mod+rmb<br>
+        `gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true`
+
     -   incase `file://` uris dont open in gnome nautilus
 
         `xdg-mime default org.gnome.Nautilus.desktop inode/directory`
