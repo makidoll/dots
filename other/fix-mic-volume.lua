@@ -1,5 +1,7 @@
 #!/usr/bin/wpexec
 
+-- TODO: this hangs i think the moment you log in
+
 mic_name = "Yeti Nano"
 mic_volume = 0.7 -- %
 mic_interval = 500 -- ms
