@@ -114,7 +114,7 @@
 -   setup deadbeef
 
     -   `yay -S deadbeef-git deadbeef-mpris2-plugin deadbeef-plugin-fb-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-discord-git`
-    -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makitsune/dots/main/.config/deadbeef/config)
+    -   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makidoll/dots/main/.config/deadbeef/config)
 
 -   force microphone to fixed volume using wireplumber and systemd
 
@@ -196,12 +196,12 @@
 
 -   setup alacritty
 
-    [`.config/alacritty/alacritty.yml`](https://raw.githubusercontent.com/makitsune/dots/main/.config/alacritty/alacritty.yml) (haven't really touched this in a while)
+    [`.config/alacritty/alacritty.yml`](https://raw.githubusercontent.com/makidoll/dots/main/.config/alacritty/alacritty.yml) (haven't really touched this in a while)
 
 -   setup smb for sonos music library
 
     -   `sudo pacman -S samba`
-    -   [`/etc/samba/smb.conf`](https://raw.githubusercontent.com/makitsune/dots/main/etc/samba/smb.conf)
+    -   [`/etc/samba/smb.conf`](https://raw.githubusercontent.com/makidoll/dots/main/etc/samba/smb.conf)
     -   `sudo systemctl enable smb && sudo systemctl start smb`
 
 -   guide to install affinity suite

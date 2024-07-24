@@ -2,4 +2,3 @@
 -   systemd-resolved
 -   linux-tkg
 -   laptop stuff
--   makitsune to makidoll
