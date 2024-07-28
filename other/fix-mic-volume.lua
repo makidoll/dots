@@ -1,9 +1,10 @@
 #!/usr/bin/wpexec
 
 -- TODO: this hangs i think the moment you log in
+-- hopefully the added sleep fixes that for now
 
 mic_name = "Yeti Nano"
-mic_volume = 0.7 -- %
+mic_volume = 0.6 -- %
 mic_interval = 500 -- ms
 
 --
@@ -19,6 +20,14 @@ obj_mgr = ObjectManager {
 }
 
 mic_volume = mic_volume ^ 3 -- cubic
+
+function sleep(s) 
+    local sec = tonumber(os.clock() + s); 
+    while (os.clock() < sec) do 
+    end 
+end
+
+sleep(5) -- will do 100% cpu
 
 Core.require_api("mixer", function(mixer)
 	obj_mgr:connect("installed", function(om)
