@@ -47,13 +47,15 @@
     -   resize windows using mod+rmb<br>
         `gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true`
 
-    -   incase `file://` uris dont open in gnome nautilus
-
+    -   incase `file://` uris dont open in gnome nautilus<br>
         `xdg-mime default org.gnome.Nautilus.desktop inode/directory`
+
+    -   remove arch logo from gdm<br>
+        `sudo -u gdm dbus-launch gsettings set org.gnome.login-screen logo ""`
 
     -   themes
 
-        -   please dont theme gnome
+        -   please dont theme gnome https://stopthemingmy.app
         -   but do use [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 
     -   extensions
