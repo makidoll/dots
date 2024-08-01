@@ -1,4 +1,4 @@
-# Maki's keyboard config
+# Extras for keyboard
 
 Using CannonKeys Bakeneko60, layout inspired by POK3R
 
@@ -13,7 +13,9 @@ TODO: explain layout i guess
 
 ---
 
-> I'm not using any of the below but kept them in the guide anyway
+> <br>
+> ⚠️ I'm not using any of the below but kept them in the guide anyway<br>
+> <br>
 
 ## Linux restore F13 to F24 keys
 

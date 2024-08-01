@@ -1,4 +1,4 @@
-# Extras for Audio
+# Extras for audio
 
 Everything here has been tested with PipeWire
 
