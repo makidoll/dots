@@ -45,7 +45,7 @@
 
 -   please dont theme gnome https://stopthemingmy.app
 -   but do use [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
--   change font to [SN Pro](https://supernotes.app/open-source/sn-pro/) available on the aur as [otf-sn-pro](https://aur.archlinux.org/packages/otf-sn-pro)
+-   change font to [SN Pro](https://supernotes.app/open-source/sn-pro/) `yay -S ots-sn-pro`
 
 ## Extensions
 
