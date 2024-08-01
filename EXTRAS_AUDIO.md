@@ -15,7 +15,7 @@ Uses wireplumber and systemd
 
 -   `vim ~/.config/systemd/user/fix-mic-volume.service`
 
-    ```
+    ```service
     [Unit]
     Description=Fix Mic Volume
 
