@@ -2,7 +2,37 @@
 
 Everything here has been tested with PipeWire
 
-## Virtual Audio Cable
+## Force microphone to fixed volume
+
+Uses wireplumber and systemd
+
+-   ```bash
+    wget https://raw.githubusercontent.com/makidoll/dots/main/other/fix-mic-volume.lua
+    chmod +x fix-mic-volume.lua
+    ```
+
+-   update variables at the top of the lua file
+
+-   `vim ~/.config/systemd/user/fix-mic-volume.service`
+
+    ```
+    [Unit]
+    Description=Fix Mic Volume
+
+    [Service]
+    ExecStart=/home/maki/fix-mic-volume.lua
+    Type=simple
+    # treat as a lowest priority program
+    Nice=19
+
+    [Install]
+    WantedBy=default.target
+    ```
+
+-   `systemctl enable --now --user fix-mic-volume.service`
+-   `systemctl status --user fix-mic-volume.service` make sure its not erroring
+
+## Virtual audio cable
 
 After installing the service file, create virtual audio cables using:
 
@@ -33,3 +63,8 @@ $(pactl list short modules | grep source_name=%i | cut -d$'\t' -f1)"
 [Install]
 WantedBy=default.target
 ```
+
+# Setup DeaDBeeF
+
+-   `yay -S deadbeef-git deadbeef-mpris2-plugin deadbeef-plugin-fb-gtk3-git deadbeef-plugin-spectrogram-gtk3-git deadbeef-plugin-discord-git`
+-   [`.config/deadbeef/config`](https://raw.githubusercontent.com/makidoll/dots/main/.config/deadbeef/config)
