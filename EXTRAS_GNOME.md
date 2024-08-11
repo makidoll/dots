@@ -64,29 +64,7 @@ recommended to install below using yay (cause devs arent updating their extensio
         `/bin/sh -c "/usr/bin/checkupdates && /usr/bin/yay -Qua"`
     -   Command to update packages:<br>
         `gnome-terminal -- /bin/sh -c "~/update-all.sh; echo Done - Press enter to exit; read _"`
-    -   In home folder, write `update-all.sh`:<br>
-
-        ```bash
-        #!/bin/bash
-
-        export MAKEFLAGS="-j32" # please use `nproc --all`
-
-        ignore=()
-
-        ignore_args=""
-        for package in "${ignore[@]}"
-        do
-        	ignore_args="$ignore_args --ignore $package"
-        done
-
-        # echo $ignore_args
-
-        if [[ "$1" == "--pacman" ]]; then
-        	sudo pacman -Syu $ignore_args
-        else
-        	yay -Syu $ignore_args
-        fi
-        ```
+    -   In home folder, place [update-all.sh](https://raw.githubusercontent.com/makidoll/dots/main/other/update-all.sh)
 
 honorable but not using
 
