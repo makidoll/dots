@@ -12,12 +12,17 @@
     makepkg -si
     ```
 
--   firefox with vertical tabs
+-   firefox with vertical tabs and more
 
+    -   install mercury browser<br />
+        `yay -S mercury-browser-avx2-bin`
     -   install [sideberry](https://addons.mozilla.org/en-US/firefox/addon/sidebery/) extension
     -   css hack [to hide native tabs](<https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css)#completely-hide-native-tabs-strip>)
     -   also add `#sidebar-header { display: none; }`
-    -   install [`minimalist-dracula-darker.xpi`](https://github.com/makidoll/dots/blob/main/other/minimalist-dracula-darker.xpi) theme (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
+    -   some custom favicon too [`firefox-favicons.css`](https://github.com/makidoll/dots/blob/main/other/firefox-favicons.css)
+
+    -   install [`minimalist-dracula-darker.xpi`](https://github.com/makidoll/dots/blob/main/other/minimalist-dracula-darker.xpi) theme<br />
+        (modified from [MinimalistFox](https://github.com/canbeardig/MinimalistFox))
 
 -   set cpu frequency policy to performance
 
