@@ -37,10 +37,6 @@
 -   make emojis work by running<br />
     `yay -S noto-fonts-emoji noto-color-emoji-fontconfig`
 
--   increase steam shader pre-compilation threads<br />
-    `~/.steam/steam/steam_dev.cfg`<br />
-    `unShaderBackgroundProcessingThreads 8`
-
 -   TODO: linux-tkg
 
 -   disable `*-debug` packages
