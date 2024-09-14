@@ -11,6 +11,16 @@ TODO: explain layout i guess
     -   Was [`keymap-socd.c`](https://raw.githubusercontent.com/makidoll/dots/main/keyboard/keymap-socd.c) but not using
 -   Compile and flash
 
+## Framework 13 with keyd
+
+-   Install `keyd` package
+-   Save [`keyd.conf`](https://raw.githubusercontent.com/makidoll/dots/main/keyboard/keyd.conf) to `/etc/keyd/default.conf`
+-   Enable with `sudo systemd enable --now keyd`
+-   Notes:
+    -   Top row keys are now **ESC, F1 to F12, Delete**, although **F10** doesn't work
+    -   **Mod + Top row delete** will toggle caps lock, just incase
+    -   Hardware arrow keys disabled, **left arrow** now mod and **right arrow** now control
+
 ---
 
 > <br>
