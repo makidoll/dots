@@ -21,14 +21,6 @@ obj_mgr = ObjectManager {
 
 mic_volume = mic_volume ^ 3 -- cubic
 
-function sleep(s) 
-    local sec = tonumber(os.clock() + s); 
-    while (os.clock() < sec) do 
-    end 
-end
-
-sleep(5) -- will do 100% cpu
-
 Core.require_api("mixer", function(mixer)
 	obj_mgr:connect("installed", function(om)
 		Core.timeout_add(mic_interval, function()

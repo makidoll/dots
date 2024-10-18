@@ -18,8 +18,10 @@ Uses wireplumber and systemd
     ```service
     [Unit]
     Description=Fix Mic Volume
+    After=pipewire.service
 
     [Service]
+    # ExecStartPre=/bin/sleep 5 # not sure
     ExecStart=/home/maki/fix-mic-volume.lua
     Type=simple
     # treat as a lowest priority program
