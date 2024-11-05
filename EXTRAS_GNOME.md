@@ -49,22 +49,25 @@
 
 ## Extensions
 
-recommended to install below using yay (cause devs arent updating their extensions on gnome.org)
+recommended to install below using yay cause devs arent updating their extensions on gnome.org
 
-`yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-freon gnome-shell-extension-gamemode-git gnome-shell-extension-hidetopbar-git gnome-shell-extension-rounded-window-corners-git gnome-shell-extension-arch-update`
+`yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-hidetopbar-git`
 
 -   [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/) adds tray icons back
--   [Freon](https://extensions.gnome.org/extension/841/freon/) shows cpu temp and more
--   [GameMode](https://extensions.gnome.org/extension/1852/gamemode/) shows indicator when `gamemoderun`
--   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/) gives back space
--   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) is just nice
 -   [Arch Update Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/) shows package updates
+-   [Hide Top Bar](https://extensions.gnome.org/extension/545/hide-top-bar/) gives back space
 
     -   In advanced settings, change command to check for package updates:<br>
         `/bin/sh -c "/usr/bin/checkupdates && /usr/bin/yay -Qua"`
     -   Command to update packages:<br>
         `gnome-terminal -- /bin/sh -c "~/update-all.sh; echo Done - Press enter to exit; read _"`
     -   In home folder, place [update-all.sh](https://raw.githubusercontent.com/makidoll/dots/main/other/update-all.sh)
+
+extras but not using. the less addons the better
+
+-   [Freon](https://extensions.gnome.org/extension/841/freon/) shows cpu temp and more
+-   [GameMode](https://extensions.gnome.org/extension/1852/gamemode/) shows indicator when `gamemoderun`
+-   [Rounded Window Corners](https://extensions.gnome.org/extension/5237/rounded-window-corners/) is just nice
 
 honorable but not using
 
