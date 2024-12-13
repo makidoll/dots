@@ -47,6 +47,12 @@
 -   but do use [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 -   change font to [SN Pro](https://supernotes.app/open-source/sn-pro/) `yay -S ots-sn-pro`
 
+## Nautilus
+
+If using VSCode or VSCodium, add button to open folders
+
+`yay -S --noconfirm nautilus-code-git`
+
 ## Extensions
 
 recommended to install below using yay cause devs arent updating their extensions on gnome.org
