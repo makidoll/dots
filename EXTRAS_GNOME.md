@@ -51,7 +51,10 @@
 
 If using VSCode or VSCodium, add button to open folders
 
-`yay -S --noconfirm nautilus-code-git`
+`yay -S --noconfirm code-nautilus-git`
+
+Would recommend `nautilus-code-git` but I like to<br/>
+`ln -s /usr/bin/codium /usr/bin/code` which above will show only once
 
 ## Extensions
 
