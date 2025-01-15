@@ -21,7 +21,7 @@ Uses wireplumber and systemd
     After=pipewire.service
 
     [Service]
-    ExecStartPre=/bin/sleep 2
+    # ExecStartPre=/bin/sleep 2
     ExecStart=/home/maki/fix-mic-volume.lua
     Type=simple
     # treat as a lowest priority program
