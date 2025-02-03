@@ -1,0 +1,9 @@
+[Unit]
+Description=Persistent evdev proxy
+Before=libvirtd.service
+
+[Service]
+ExecStart=/opt/persistent-evdev/persistent-evdev.py /opt/persistent-evdev/config.json
+
+[Install]
+WantedBy=multi-user.target

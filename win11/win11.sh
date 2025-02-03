@@ -10,10 +10,14 @@ if [[ $1 == "attach" ]]; then
 	product_id=""
 
 	# get ids from lsusb
-	if [[ $2 == "controller" ]]; then
+	if [[ $2 == "procontroller" ]]; then
 		# nintendo switch pro controller over usb
 		vendor_id="057e" 
 		product_id="2009" 
+	elif [[ $2 == "8bitdo" ]]; then
+		# 8bitdo pro 2
+		vendor_id="2dc8" 
+		product_id="3106" 
 	elif [[ $2 == "webcam" ]]; then
 		# logitech c920
 		vendor_id="046d" 
@@ -42,10 +46,17 @@ fi
 echo "Starting virtual machine..."
 sudo virsh start win11
 
+: '
 echo "Starting looking glass..."
 
 sudo chmod 777 /dev/shm/looking-glass
 
-setsid nohup looking-glass-client \
-	-p 5900 -m KEY_RIGHTSHIFT -K 144 -S -F \
-	2>/dev/null 1>/dev/null &
+# export __NV_DISABLE_EXPLICIT_SYNC=1
+
+# https://github.com/NVIDIA/egl-wayland/issues/149
+
+# setsid nohup \
+looking-glass-client \
+-p 5900 -m KEY_RIGHTSHIFT -K 144 -S -F
+# 2>/dev/null 1>/dev/null &
+'
