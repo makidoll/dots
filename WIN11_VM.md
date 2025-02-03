@@ -1,12 +1,12 @@
 # Windows VM
 
-This is so tricky to get right. The guide is only really for myself.
+There are so many moving parts. This guide is only really for myself.
 
 Really recommend looking through: https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
 
 Using an AMD Ryzen 7950x
 
-## Scripts
+## Files
 
 Current libvirt xml here: https://github.com/makidoll/dots/blob/main/win11/win11.xml
 
@@ -48,15 +48,20 @@ fi
 ```bash
 sudo chmod +x /etc/libvirt/hooks/qemu
 sudo systemctl restart libvirtd.service
-# check AllowedCPUs using
+```
+
+Check AllowedCPUs using
+
+```bash
 systemctl show system.slice | grep AllowedCPUs=
+
 ```
 
 ## Persistent Evdev
 
 When using `evdev` and `grabToggle="ctrl-ctrl"`, mouse/keyboard input will be lost when they're disconnected. This script proxies them so that they're always available.
 
-https://github.com/aiberia/persistent-evdev
+Original: https://github.com/aiberia/persistent-evdev
 
 Find modfied files in `win11` folder
 
