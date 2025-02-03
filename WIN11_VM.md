@@ -82,3 +82,11 @@ Now you can use the following in libvirt
 /dev/input/by-id/uinput-persist-keyboard
 /dev/input/by-id/uinput-persist-mouse
 ```
+
+## Congrats
+
+Now you can chug jug Fornite gamer on Linux (fuck you Epic Games)
+
+[<img src="https://i.ytimg.com/vi/DD_bxaHvt9g/hqdefault.jpg" height="250"/>](https://www.youtube.com/watch?v=DD_bxaHvt9g)
+
+https://www.youtube.com/watch?v=DD_bxaHvt9g
