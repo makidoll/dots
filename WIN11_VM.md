@@ -87,6 +87,6 @@ Now you can use the following in libvirt
 
 Now you can chug jug Fornite gamer on Linux (fuck you Epic Games)
 
-[<img src="https://i.ytimg.com/vi/DD_bxaHvt9g/hqdefault.jpg" height="250"/>](https://www.youtube.com/watch?v=DD_bxaHvt9g)
+[chug-jug.webm](https://github.com/user-attachments/assets/a05069fb-6664-42b6-9247-f4d667f52172)
 
 https://www.youtube.com/watch?v=DD_bxaHvt9g
