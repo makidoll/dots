@@ -85,7 +85,7 @@ Now you can use the following in libvirt
 
 ## Congrats
 
-Now you can chug jug Fornite gamer on Linux (fuck you Epic Games)
+Now you can chug jug Fortnite gamer on Linux
 
 [chug-jug.webm](https://github.com/user-attachments/assets/a05069fb-6664-42b6-9247-f4d667f52172)
 

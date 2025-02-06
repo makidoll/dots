@@ -60,7 +60,7 @@ Would recommend `nautilus-code-git` but I like to<br/>
 
 recommended to install below using yay cause devs arent updating their extensions on gnome.org
 
-`yay -S --noconfirm gnome-shell-extension-appindicator-git gnome-shell-extension-arch-update gnome-shell-extension-hidetopbar-git`
+`yay -S --noconfirm gnome-shell-extension-appindicator gnome-shell-extension-arch-update gnome-shell-extension-hidetopbar-git`
 
 -   [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/) adds tray icons back
 -   [Arch Update Indicator](https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/) shows package updates
